@@ -1,0 +1,7 @@
+{
+  "name": "inquam",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
