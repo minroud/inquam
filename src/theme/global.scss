@@ -1,0 +1,47 @@
+/*Archivo global de estilos que importa las variables propias de Ionic*/
+
+@import 'variables';
+
+.section-title {
+  letter-spacing: .065em;
+  font-feature-settings: unset;
+  font-variant: small-caps;
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.page-title {
+  letter-spacing: .065em;
+  font-feature-settings: unset;
+  font-variant: small-caps;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+ion-textarea.lighter-placeholder {
+  --placeholder-font-weight: 100;
+  --placeholder-opacity: .4;
+}
+
+ion-button.round-button {
+  border-radius: 100%;
+  width: 32px;
+
+  ion-icon {
+    font-size: 32px;
+  }
+}
+
+ion-row.last-row {
+  margin-bottom: 16px;
+}
+
+.input-error {
+  font-style: italic;
+  color: #EB5757;
+  font-size: 11px;
+  margin-left: 16px;
+}
+

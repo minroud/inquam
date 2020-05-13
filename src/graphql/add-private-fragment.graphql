@@ -1,0 +1,6 @@
+mutation addPrivateFragment($object: private_fragments_insert_input!) {
+    insert_private_fragments_one(object: $object) {
+        id
+        content
+    }
+}

@@ -1,0 +1,9 @@
+query getPrivateStory($id: String, $hash: String) {
+    private_stories(where: {id: {_eq: $id}, _and: {}, hash: {_eq: $hash}}) {
+        title
+        char_limit
+        fragments {
+            content
+        }
+    }
+}

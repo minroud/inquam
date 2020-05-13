@@ -1,0 +1,11 @@
+mutation linkFragmentToStory($object: stories_fragments_insert_input!) {
+    insert_stories_fragments_one(object: $object) {
+        story {
+            fragments {
+                fragment {
+                    content
+                }
+            }
+        }
+    }
+}

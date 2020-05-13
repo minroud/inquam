@@ -1,0 +1,16 @@
+ion-button {
+  font-weight: 800;
+  height: 55px;
+  margin: 0;
+  --box-shadow: none;
+
+  &.first-child-expanded {
+    --box-shadow: inset 0 6px 12px -8px #000 !important;
+  }
+
+  &.last-child-expanded {
+    --box-shadow: inset 0 -6px 12px -8px #000 !important;
+  }
+}
+
+

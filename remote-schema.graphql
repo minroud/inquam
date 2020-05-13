@@ -1,0 +1,2181 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"columns and relationships of \"fragments\""
+type fragments {
+    branched: Boolean!
+    content: String!
+    created_on: timestamptz!
+    id: String!
+    "An array relationship"
+    stories(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): [stories_fragments!]!
+    "An aggregated array relationship"
+    stories_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): stories_fragments_aggregate!
+}
+
+"aggregated selection of \"fragments\""
+type fragments_aggregate {
+    aggregate: fragments_aggregate_fields
+    nodes: [fragments!]!
+}
+
+"aggregate fields of \"fragments\""
+type fragments_aggregate_fields {
+    count(columns: [fragments_select_column!], distinct: Boolean): Int
+    max: fragments_max_fields
+    min: fragments_min_fields
+}
+
+"aggregate max on columns"
+type fragments_max_fields {
+    content: String
+    created_on: timestamptz
+    id: String
+}
+
+"aggregate min on columns"
+type fragments_min_fields {
+    content: String
+    created_on: timestamptz
+    id: String
+}
+
+"response of any mutation on the table \"fragments\""
+type fragments_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [fragments!]!
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"fragments\""
+    delete_fragments(
+        "filter the rows which have to be deleted"
+        where: fragments_bool_exp!
+    ): fragments_mutation_response
+    "delete single row from the table: \"fragments\""
+    delete_fragments_by_pk(id: String!): fragments
+    "delete data from the table: \"private_fragments\""
+    delete_private_fragments(
+        "filter the rows which have to be deleted"
+        where: private_fragments_bool_exp!
+    ): private_fragments_mutation_response
+    "delete single row from the table: \"private_fragments\""
+    delete_private_fragments_by_pk(id: String!): private_fragments
+    "delete data from the table: \"private_stories\""
+    delete_private_stories(
+        "filter the rows which have to be deleted"
+        where: private_stories_bool_exp!
+    ): private_stories_mutation_response
+    "delete single row from the table: \"private_stories\""
+    delete_private_stories_by_pk(id: String!): private_stories
+    "delete data from the table: \"stories\""
+    delete_stories(
+        "filter the rows which have to be deleted"
+        where: stories_bool_exp!
+    ): stories_mutation_response
+    "delete single row from the table: \"stories\""
+    delete_stories_by_pk(id: String!): stories
+    "delete data from the table: \"stories_fragments\""
+    delete_stories_fragments(
+        "filter the rows which have to be deleted"
+        where: stories_fragments_bool_exp!
+    ): stories_fragments_mutation_response
+    "delete single row from the table: \"stories_fragments\""
+    delete_stories_fragments_by_pk(fragment_id: String!, story_id: String!): stories_fragments
+    "delete data from the table: \"stories_tags\""
+    delete_stories_tags(
+        "filter the rows which have to be deleted"
+        where: stories_tags_bool_exp!
+    ): stories_tags_mutation_response
+    "delete single row from the table: \"stories_tags\""
+    delete_stories_tags_by_pk(story_id: String!, tag: String!): stories_tags
+    "delete data from the table: \"tags\""
+    delete_tags(
+        "filter the rows which have to be deleted"
+        where: tags_bool_exp!
+    ): tags_mutation_response
+    "delete single row from the table: \"tags\""
+    delete_tags_by_pk(name: String!): tags
+    "insert data into the table: \"fragments\""
+    insert_fragments(
+        "the rows to be inserted"
+        objects: [fragments_insert_input!]!,
+        "on conflict condition"
+        on_conflict: fragments_on_conflict
+    ): fragments_mutation_response
+    "insert a single row into the table: \"fragments\""
+    insert_fragments_one(
+        "the row to be inserted"
+        object: fragments_insert_input!,
+        "on conflict condition"
+        on_conflict: fragments_on_conflict
+    ): fragments
+    "insert data into the table: \"private_fragments\""
+    insert_private_fragments(
+        "the rows to be inserted"
+        objects: [private_fragments_insert_input!]!,
+        "on conflict condition"
+        on_conflict: private_fragments_on_conflict
+    ): private_fragments_mutation_response
+    "insert a single row into the table: \"private_fragments\""
+    insert_private_fragments_one(
+        "the row to be inserted"
+        object: private_fragments_insert_input!,
+        "on conflict condition"
+        on_conflict: private_fragments_on_conflict
+    ): private_fragments
+    "insert data into the table: \"private_stories\""
+    insert_private_stories(
+        "the rows to be inserted"
+        objects: [private_stories_insert_input!]!,
+        "on conflict condition"
+        on_conflict: private_stories_on_conflict
+    ): private_stories_mutation_response
+    "insert a single row into the table: \"private_stories\""
+    insert_private_stories_one(
+        "the row to be inserted"
+        object: private_stories_insert_input!,
+        "on conflict condition"
+        on_conflict: private_stories_on_conflict
+    ): private_stories
+    "insert data into the table: \"stories\""
+    insert_stories(
+        "the rows to be inserted"
+        objects: [stories_insert_input!]!,
+        "on conflict condition"
+        on_conflict: stories_on_conflict
+    ): stories_mutation_response
+    "insert data into the table: \"stories_fragments\""
+    insert_stories_fragments(
+        "the rows to be inserted"
+        objects: [stories_fragments_insert_input!]!,
+        "on conflict condition"
+        on_conflict: stories_fragments_on_conflict
+    ): stories_fragments_mutation_response
+    "insert a single row into the table: \"stories_fragments\""
+    insert_stories_fragments_one(
+        "the row to be inserted"
+        object: stories_fragments_insert_input!,
+        "on conflict condition"
+        on_conflict: stories_fragments_on_conflict
+    ): stories_fragments
+    "insert a single row into the table: \"stories\""
+    insert_stories_one(
+        "the row to be inserted"
+        object: stories_insert_input!,
+        "on conflict condition"
+        on_conflict: stories_on_conflict
+    ): stories
+    "insert data into the table: \"stories_tags\""
+    insert_stories_tags(
+        "the rows to be inserted"
+        objects: [stories_tags_insert_input!]!,
+        "on conflict condition"
+        on_conflict: stories_tags_on_conflict
+    ): stories_tags_mutation_response
+    "insert a single row into the table: \"stories_tags\""
+    insert_stories_tags_one(
+        "the row to be inserted"
+        object: stories_tags_insert_input!,
+        "on conflict condition"
+        on_conflict: stories_tags_on_conflict
+    ): stories_tags
+    "insert data into the table: \"tags\""
+    insert_tags(
+        "the rows to be inserted"
+        objects: [tags_insert_input!]!,
+        "on conflict condition"
+        on_conflict: tags_on_conflict
+    ): tags_mutation_response
+    "insert a single row into the table: \"tags\""
+    insert_tags_one(
+        "the row to be inserted"
+        object: tags_insert_input!,
+        "on conflict condition"
+        on_conflict: tags_on_conflict
+    ): tags
+    "update data of the table: \"fragments\""
+    update_fragments(
+        "sets the columns of the filtered rows to the given values"
+        _set: fragments_set_input,
+        "filter the rows which have to be updated"
+        where: fragments_bool_exp!
+    ): fragments_mutation_response
+    "update single row of the table: \"fragments\""
+    update_fragments_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: fragments_set_input,
+        pk_columns: fragments_pk_columns_input!
+    ): fragments
+    "update data of the table: \"private_fragments\""
+    update_private_fragments(
+        "sets the columns of the filtered rows to the given values"
+        _set: private_fragments_set_input,
+        "filter the rows which have to be updated"
+        where: private_fragments_bool_exp!
+    ): private_fragments_mutation_response
+    "update single row of the table: \"private_fragments\""
+    update_private_fragments_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: private_fragments_set_input,
+        pk_columns: private_fragments_pk_columns_input!
+    ): private_fragments
+    "update data of the table: \"private_stories\""
+    update_private_stories(
+        "increments the integer columns with given value of the filtered values"
+        _inc: private_stories_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: private_stories_set_input,
+        "filter the rows which have to be updated"
+        where: private_stories_bool_exp!
+    ): private_stories_mutation_response
+    "update single row of the table: \"private_stories\""
+    update_private_stories_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: private_stories_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: private_stories_set_input,
+        pk_columns: private_stories_pk_columns_input!
+    ): private_stories
+    "update data of the table: \"stories\""
+    update_stories(
+        "increments the integer columns with given value of the filtered values"
+        _inc: stories_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: stories_set_input,
+        "filter the rows which have to be updated"
+        where: stories_bool_exp!
+    ): stories_mutation_response
+    "update single row of the table: \"stories\""
+    update_stories_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: stories_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: stories_set_input,
+        pk_columns: stories_pk_columns_input!
+    ): stories
+    "update data of the table: \"stories_fragments\""
+    update_stories_fragments(
+        "sets the columns of the filtered rows to the given values"
+        _set: stories_fragments_set_input,
+        "filter the rows which have to be updated"
+        where: stories_fragments_bool_exp!
+    ): stories_fragments_mutation_response
+    "update single row of the table: \"stories_fragments\""
+    update_stories_fragments_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: stories_fragments_set_input,
+        pk_columns: stories_fragments_pk_columns_input!
+    ): stories_fragments
+    "update data of the table: \"stories_tags\""
+    update_stories_tags(
+        "sets the columns of the filtered rows to the given values"
+        _set: stories_tags_set_input,
+        "filter the rows which have to be updated"
+        where: stories_tags_bool_exp!
+    ): stories_tags_mutation_response
+    "update single row of the table: \"stories_tags\""
+    update_stories_tags_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: stories_tags_set_input,
+        pk_columns: stories_tags_pk_columns_input!
+    ): stories_tags
+    "update data of the table: \"tags\""
+    update_tags(
+        "sets the columns of the filtered rows to the given values"
+        _set: tags_set_input,
+        "filter the rows which have to be updated"
+        where: tags_bool_exp!
+    ): tags_mutation_response
+    "update single row of the table: \"tags\""
+    update_tags_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: tags_set_input,
+        pk_columns: tags_pk_columns_input!
+    ): tags
+}
+
+"columns and relationships of \"private_fragments\""
+type private_fragments {
+    content: String!
+    created_on: timestamptz!
+    id: String!
+    "An object relationship"
+    story: private_stories!
+    story_id: String!
+}
+
+"aggregated selection of \"private_fragments\""
+type private_fragments_aggregate {
+    aggregate: private_fragments_aggregate_fields
+    nodes: [private_fragments!]!
+}
+
+"aggregate fields of \"private_fragments\""
+type private_fragments_aggregate_fields {
+    count(columns: [private_fragments_select_column!], distinct: Boolean): Int
+    max: private_fragments_max_fields
+    min: private_fragments_min_fields
+}
+
+"aggregate max on columns"
+type private_fragments_max_fields {
+    content: String
+    created_on: timestamptz
+    id: String
+    story_id: String
+}
+
+"aggregate min on columns"
+type private_fragments_min_fields {
+    content: String
+    created_on: timestamptz
+    id: String
+    story_id: String
+}
+
+"response of any mutation on the table \"private_fragments\""
+type private_fragments_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [private_fragments!]!
+}
+
+"columns and relationships of \"private_stories\""
+type private_stories {
+    char_limit: Int!
+    cookie: String
+    created_on: timestamptz!
+    description: String
+    "An array relationship"
+    fragments(
+        "distinct select on columns"
+        distinct_on: [private_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_fragments_order_by!],
+        "filter the rows returned"
+        where: private_fragments_bool_exp
+    ): [private_fragments!]!
+    "An aggregated array relationship"
+    fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [private_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_fragments_order_by!],
+        "filter the rows returned"
+        where: private_fragments_bool_exp
+    ): private_fragments_aggregate!
+    hash: String!
+    id: String!
+    salt: String
+    title: String!
+}
+
+"aggregated selection of \"private_stories\""
+type private_stories_aggregate {
+    aggregate: private_stories_aggregate_fields
+    nodes: [private_stories!]!
+}
+
+"aggregate fields of \"private_stories\""
+type private_stories_aggregate_fields {
+    avg: private_stories_avg_fields
+    count(columns: [private_stories_select_column!], distinct: Boolean): Int
+    max: private_stories_max_fields
+    min: private_stories_min_fields
+    stddev: private_stories_stddev_fields
+    stddev_pop: private_stories_stddev_pop_fields
+    stddev_samp: private_stories_stddev_samp_fields
+    sum: private_stories_sum_fields
+    var_pop: private_stories_var_pop_fields
+    var_samp: private_stories_var_samp_fields
+    variance: private_stories_variance_fields
+}
+
+"aggregate avg on columns"
+type private_stories_avg_fields {
+    char_limit: Float
+}
+
+"aggregate max on columns"
+type private_stories_max_fields {
+    char_limit: Int
+    cookie: String
+    created_on: timestamptz
+    description: String
+    hash: String
+    id: String
+    salt: String
+    title: String
+}
+
+"aggregate min on columns"
+type private_stories_min_fields {
+    char_limit: Int
+    cookie: String
+    created_on: timestamptz
+    description: String
+    hash: String
+    id: String
+    salt: String
+    title: String
+}
+
+"response of any mutation on the table \"private_stories\""
+type private_stories_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [private_stories!]!
+}
+
+"aggregate stddev on columns"
+type private_stories_stddev_fields {
+    char_limit: Float
+}
+
+"aggregate stddev_pop on columns"
+type private_stories_stddev_pop_fields {
+    char_limit: Float
+}
+
+"aggregate stddev_samp on columns"
+type private_stories_stddev_samp_fields {
+    char_limit: Float
+}
+
+"aggregate sum on columns"
+type private_stories_sum_fields {
+    char_limit: Int
+}
+
+"aggregate var_pop on columns"
+type private_stories_var_pop_fields {
+    char_limit: Float
+}
+
+"aggregate var_samp on columns"
+type private_stories_var_samp_fields {
+    char_limit: Float
+}
+
+"aggregate variance on columns"
+type private_stories_variance_fields {
+    char_limit: Float
+}
+
+"query root"
+type query_root {
+    "fetch data from the table: \"fragments\""
+    fragments(
+        "distinct select on columns"
+        distinct_on: [fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fragments_order_by!],
+        "filter the rows returned"
+        where: fragments_bool_exp
+    ): [fragments!]!
+    "fetch aggregated fields from the table: \"fragments\""
+    fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fragments_order_by!],
+        "filter the rows returned"
+        where: fragments_bool_exp
+    ): fragments_aggregate!
+    "fetch data from the table: \"fragments\" using primary key columns"
+    fragments_by_pk(id: String!): fragments
+    "fetch data from the table: \"private_fragments\""
+    private_fragments(
+        "distinct select on columns"
+        distinct_on: [private_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_fragments_order_by!],
+        "filter the rows returned"
+        where: private_fragments_bool_exp
+    ): [private_fragments!]!
+    "fetch aggregated fields from the table: \"private_fragments\""
+    private_fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [private_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_fragments_order_by!],
+        "filter the rows returned"
+        where: private_fragments_bool_exp
+    ): private_fragments_aggregate!
+    "fetch data from the table: \"private_fragments\" using primary key columns"
+    private_fragments_by_pk(id: String!): private_fragments
+    "fetch data from the table: \"private_stories\""
+    private_stories(
+        "distinct select on columns"
+        distinct_on: [private_stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_stories_order_by!],
+        "filter the rows returned"
+        where: private_stories_bool_exp
+    ): [private_stories!]!
+    "fetch aggregated fields from the table: \"private_stories\""
+    private_stories_aggregate(
+        "distinct select on columns"
+        distinct_on: [private_stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_stories_order_by!],
+        "filter the rows returned"
+        where: private_stories_bool_exp
+    ): private_stories_aggregate!
+    "fetch data from the table: \"private_stories\" using primary key columns"
+    private_stories_by_pk(id: String!): private_stories
+    "fetch data from the table: \"stories\""
+    stories(
+        "distinct select on columns"
+        distinct_on: [stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_order_by!],
+        "filter the rows returned"
+        where: stories_bool_exp
+    ): [stories!]!
+    "fetch aggregated fields from the table: \"stories\""
+    stories_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_order_by!],
+        "filter the rows returned"
+        where: stories_bool_exp
+    ): stories_aggregate!
+    "fetch data from the table: \"stories\" using primary key columns"
+    stories_by_pk(id: String!): stories
+    "fetch data from the table: \"stories_fragments\""
+    stories_fragments(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): [stories_fragments!]!
+    "fetch aggregated fields from the table: \"stories_fragments\""
+    stories_fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): stories_fragments_aggregate!
+    "fetch data from the table: \"stories_fragments\" using primary key columns"
+    stories_fragments_by_pk(fragment_id: String!, story_id: String!): stories_fragments
+    "fetch data from the table: \"stories_tags\""
+    stories_tags(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): [stories_tags!]!
+    "fetch aggregated fields from the table: \"stories_tags\""
+    stories_tags_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): stories_tags_aggregate!
+    "fetch data from the table: \"stories_tags\" using primary key columns"
+    stories_tags_by_pk(story_id: String!, tag: String!): stories_tags
+    "fetch data from the table: \"tags\""
+    tags(
+        "distinct select on columns"
+        distinct_on: [tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tags_order_by!],
+        "filter the rows returned"
+        where: tags_bool_exp
+    ): [tags!]!
+    "fetch aggregated fields from the table: \"tags\""
+    tags_aggregate(
+        "distinct select on columns"
+        distinct_on: [tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tags_order_by!],
+        "filter the rows returned"
+        where: tags_bool_exp
+    ): tags_aggregate!
+    "fetch data from the table: \"tags\" using primary key columns"
+    tags_by_pk(name: String!): tags
+}
+
+"columns and relationships of \"stories\""
+type stories {
+    char_limit: Int!
+    created_on: timestamptz!
+    description: String!
+    "An array relationship"
+    fragments(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): [stories_fragments!]!
+    "An aggregated array relationship"
+    fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): stories_fragments_aggregate!
+    id: String!
+    "An array relationship"
+    tags(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): [stories_tags!]!
+    "An aggregated array relationship"
+    tags_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): stories_tags_aggregate!
+    title: String!
+}
+
+"aggregated selection of \"stories\""
+type stories_aggregate {
+    aggregate: stories_aggregate_fields
+    nodes: [stories!]!
+}
+
+"aggregate fields of \"stories\""
+type stories_aggregate_fields {
+    avg: stories_avg_fields
+    count(columns: [stories_select_column!], distinct: Boolean): Int
+    max: stories_max_fields
+    min: stories_min_fields
+    stddev: stories_stddev_fields
+    stddev_pop: stories_stddev_pop_fields
+    stddev_samp: stories_stddev_samp_fields
+    sum: stories_sum_fields
+    var_pop: stories_var_pop_fields
+    var_samp: stories_var_samp_fields
+    variance: stories_variance_fields
+}
+
+"aggregate avg on columns"
+type stories_avg_fields {
+    char_limit: Float
+}
+
+"columns and relationships of \"stories_fragments\""
+type stories_fragments {
+    "An object relationship"
+    fragment: fragments!
+    fragment_id: String!
+    "An object relationship"
+    story: stories!
+    story_id: String!
+}
+
+"aggregated selection of \"stories_fragments\""
+type stories_fragments_aggregate {
+    aggregate: stories_fragments_aggregate_fields
+    nodes: [stories_fragments!]!
+}
+
+"aggregate fields of \"stories_fragments\""
+type stories_fragments_aggregate_fields {
+    count(columns: [stories_fragments_select_column!], distinct: Boolean): Int
+    max: stories_fragments_max_fields
+    min: stories_fragments_min_fields
+}
+
+"aggregate max on columns"
+type stories_fragments_max_fields {
+    fragment_id: String
+    story_id: String
+}
+
+"aggregate min on columns"
+type stories_fragments_min_fields {
+    fragment_id: String
+    story_id: String
+}
+
+"response of any mutation on the table \"stories_fragments\""
+type stories_fragments_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [stories_fragments!]!
+}
+
+"aggregate max on columns"
+type stories_max_fields {
+    char_limit: Int
+    created_on: timestamptz
+    description: String
+    id: String
+    title: String
+}
+
+"aggregate min on columns"
+type stories_min_fields {
+    char_limit: Int
+    created_on: timestamptz
+    description: String
+    id: String
+    title: String
+}
+
+"response of any mutation on the table \"stories\""
+type stories_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [stories!]!
+}
+
+"aggregate stddev on columns"
+type stories_stddev_fields {
+    char_limit: Float
+}
+
+"aggregate stddev_pop on columns"
+type stories_stddev_pop_fields {
+    char_limit: Float
+}
+
+"aggregate stddev_samp on columns"
+type stories_stddev_samp_fields {
+    char_limit: Float
+}
+
+"aggregate sum on columns"
+type stories_sum_fields {
+    char_limit: Int
+}
+
+"columns and relationships of \"stories_tags\""
+type stories_tags {
+    "An object relationship"
+    story: stories!
+    story_id: String!
+    tag: String!
+    "An object relationship"
+    tagByTag: tags!
+}
+
+"aggregated selection of \"stories_tags\""
+type stories_tags_aggregate {
+    aggregate: stories_tags_aggregate_fields
+    nodes: [stories_tags!]!
+}
+
+"aggregate fields of \"stories_tags\""
+type stories_tags_aggregate_fields {
+    count(columns: [stories_tags_select_column!], distinct: Boolean): Int
+    max: stories_tags_max_fields
+    min: stories_tags_min_fields
+}
+
+"aggregate max on columns"
+type stories_tags_max_fields {
+    story_id: String
+    tag: String
+}
+
+"aggregate min on columns"
+type stories_tags_min_fields {
+    story_id: String
+    tag: String
+}
+
+"response of any mutation on the table \"stories_tags\""
+type stories_tags_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [stories_tags!]!
+}
+
+"aggregate var_pop on columns"
+type stories_var_pop_fields {
+    char_limit: Float
+}
+
+"aggregate var_samp on columns"
+type stories_var_samp_fields {
+    char_limit: Float
+}
+
+"aggregate variance on columns"
+type stories_variance_fields {
+    char_limit: Float
+}
+
+"subscription root"
+type subscription_root {
+    "fetch data from the table: \"fragments\""
+    fragments(
+        "distinct select on columns"
+        distinct_on: [fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fragments_order_by!],
+        "filter the rows returned"
+        where: fragments_bool_exp
+    ): [fragments!]!
+    "fetch aggregated fields from the table: \"fragments\""
+    fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fragments_order_by!],
+        "filter the rows returned"
+        where: fragments_bool_exp
+    ): fragments_aggregate!
+    "fetch data from the table: \"fragments\" using primary key columns"
+    fragments_by_pk(id: String!): fragments
+    "fetch data from the table: \"private_fragments\""
+    private_fragments(
+        "distinct select on columns"
+        distinct_on: [private_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_fragments_order_by!],
+        "filter the rows returned"
+        where: private_fragments_bool_exp
+    ): [private_fragments!]!
+    "fetch aggregated fields from the table: \"private_fragments\""
+    private_fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [private_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_fragments_order_by!],
+        "filter the rows returned"
+        where: private_fragments_bool_exp
+    ): private_fragments_aggregate!
+    "fetch data from the table: \"private_fragments\" using primary key columns"
+    private_fragments_by_pk(id: String!): private_fragments
+    "fetch data from the table: \"private_stories\""
+    private_stories(
+        "distinct select on columns"
+        distinct_on: [private_stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_stories_order_by!],
+        "filter the rows returned"
+        where: private_stories_bool_exp
+    ): [private_stories!]!
+    "fetch aggregated fields from the table: \"private_stories\""
+    private_stories_aggregate(
+        "distinct select on columns"
+        distinct_on: [private_stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [private_stories_order_by!],
+        "filter the rows returned"
+        where: private_stories_bool_exp
+    ): private_stories_aggregate!
+    "fetch data from the table: \"private_stories\" using primary key columns"
+    private_stories_by_pk(id: String!): private_stories
+    "fetch data from the table: \"stories\""
+    stories(
+        "distinct select on columns"
+        distinct_on: [stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_order_by!],
+        "filter the rows returned"
+        where: stories_bool_exp
+    ): [stories!]!
+    "fetch aggregated fields from the table: \"stories\""
+    stories_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_order_by!],
+        "filter the rows returned"
+        where: stories_bool_exp
+    ): stories_aggregate!
+    "fetch data from the table: \"stories\" using primary key columns"
+    stories_by_pk(id: String!): stories
+    "fetch data from the table: \"stories_fragments\""
+    stories_fragments(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): [stories_fragments!]!
+    "fetch aggregated fields from the table: \"stories_fragments\""
+    stories_fragments_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_fragments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_fragments_order_by!],
+        "filter the rows returned"
+        where: stories_fragments_bool_exp
+    ): stories_fragments_aggregate!
+    "fetch data from the table: \"stories_fragments\" using primary key columns"
+    stories_fragments_by_pk(fragment_id: String!, story_id: String!): stories_fragments
+    "fetch data from the table: \"stories_tags\""
+    stories_tags(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): [stories_tags!]!
+    "fetch aggregated fields from the table: \"stories_tags\""
+    stories_tags_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): stories_tags_aggregate!
+    "fetch data from the table: \"stories_tags\" using primary key columns"
+    stories_tags_by_pk(story_id: String!, tag: String!): stories_tags
+    "fetch data from the table: \"tags\""
+    tags(
+        "distinct select on columns"
+        distinct_on: [tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tags_order_by!],
+        "filter the rows returned"
+        where: tags_bool_exp
+    ): [tags!]!
+    "fetch aggregated fields from the table: \"tags\""
+    tags_aggregate(
+        "distinct select on columns"
+        distinct_on: [tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tags_order_by!],
+        "filter the rows returned"
+        where: tags_bool_exp
+    ): tags_aggregate!
+    "fetch data from the table: \"tags\" using primary key columns"
+    tags_by_pk(name: String!): tags
+}
+
+"columns and relationships of \"tags\""
+type tags {
+    name: String!
+    "An array relationship"
+    stories(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): [stories_tags!]!
+    "An aggregated array relationship"
+    stories_aggregate(
+        "distinct select on columns"
+        distinct_on: [stories_tags_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [stories_tags_order_by!],
+        "filter the rows returned"
+        where: stories_tags_bool_exp
+    ): stories_tags_aggregate!
+}
+
+"aggregated selection of \"tags\""
+type tags_aggregate {
+    aggregate: tags_aggregate_fields
+    nodes: [tags!]!
+}
+
+"aggregate fields of \"tags\""
+type tags_aggregate_fields {
+    count(columns: [tags_select_column!], distinct: Boolean): Int
+    max: tags_max_fields
+    min: tags_min_fields
+}
+
+"aggregate max on columns"
+type tags_max_fields {
+    name: String
+}
+
+"aggregate min on columns"
+type tags_min_fields {
+    name: String
+}
+
+"response of any mutation on the table \"tags\""
+type tags_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [tags!]!
+}
+
+"unique or primary key constraints on table \"fragments\""
+enum fragments_constraint {
+    "unique or primary key constraint"
+    fragments_pkey
+}
+
+"select columns of table \"fragments\""
+enum fragments_select_column {
+    "column name"
+    branched
+    "column name"
+    content
+    "column name"
+    created_on
+    "column name"
+    id
+}
+
+"update columns of table \"fragments\""
+enum fragments_update_column {
+    "column name"
+    branched
+    "column name"
+    content
+    "column name"
+    created_on
+    "column name"
+    id
+}
+
+"column ordering options"
+enum order_by {
+    "in the ascending order, nulls last"
+    asc
+    "in the ascending order, nulls first"
+    asc_nulls_first
+    "in the ascending order, nulls last"
+    asc_nulls_last
+    "in the descending order, nulls first"
+    desc
+    "in the descending order, nulls first"
+    desc_nulls_first
+    "in the descending order, nulls last"
+    desc_nulls_last
+}
+
+"unique or primary key constraints on table \"private_fragments\""
+enum private_fragments_constraint {
+    "unique or primary key constraint"
+    private_fragments_pkey
+}
+
+"select columns of table \"private_fragments\""
+enum private_fragments_select_column {
+    "column name"
+    content
+    "column name"
+    created_on
+    "column name"
+    id
+    "column name"
+    story_id
+}
+
+"update columns of table \"private_fragments\""
+enum private_fragments_update_column {
+    "column name"
+    content
+    "column name"
+    created_on
+    "column name"
+    id
+    "column name"
+    story_id
+}
+
+"unique or primary key constraints on table \"private_stories\""
+enum private_stories_constraint {
+    "unique or primary key constraint"
+    private_stories_cookie_key
+    "unique or primary key constraint"
+    private_stories_hash_key
+    "unique or primary key constraint"
+    private_stories_pkey
+}
+
+"select columns of table \"private_stories\""
+enum private_stories_select_column {
+    "column name"
+    char_limit
+    "column name"
+    cookie
+    "column name"
+    created_on
+    "column name"
+    description
+    "column name"
+    hash
+    "column name"
+    id
+    "column name"
+    salt
+    "column name"
+    title
+}
+
+"update columns of table \"private_stories\""
+enum private_stories_update_column {
+    "column name"
+    char_limit
+    "column name"
+    cookie
+    "column name"
+    created_on
+    "column name"
+    description
+    "column name"
+    hash
+    "column name"
+    id
+    "column name"
+    salt
+    "column name"
+    title
+}
+
+"unique or primary key constraints on table \"stories\""
+enum stories_constraint {
+    "unique or primary key constraint"
+    stories_pkey
+}
+
+"unique or primary key constraints on table \"stories_fragments\""
+enum stories_fragments_constraint {
+    "unique or primary key constraint"
+    stories_fragments_pkey
+}
+
+"select columns of table \"stories_fragments\""
+enum stories_fragments_select_column {
+    "column name"
+    fragment_id
+    "column name"
+    story_id
+}
+
+"update columns of table \"stories_fragments\""
+enum stories_fragments_update_column {
+    "column name"
+    fragment_id
+    "column name"
+    story_id
+}
+
+"select columns of table \"stories\""
+enum stories_select_column {
+    "column name"
+    char_limit
+    "column name"
+    created_on
+    "column name"
+    description
+    "column name"
+    id
+    "column name"
+    title
+}
+
+"unique or primary key constraints on table \"stories_tags\""
+enum stories_tags_constraint {
+    "unique or primary key constraint"
+    stories_tags_pkey
+}
+
+"select columns of table \"stories_tags\""
+enum stories_tags_select_column {
+    "column name"
+    story_id
+    "column name"
+    tag
+}
+
+"update columns of table \"stories_tags\""
+enum stories_tags_update_column {
+    "column name"
+    story_id
+    "column name"
+    tag
+}
+
+"update columns of table \"stories\""
+enum stories_update_column {
+    "column name"
+    char_limit
+    "column name"
+    created_on
+    "column name"
+    description
+    "column name"
+    id
+    "column name"
+    title
+}
+
+"unique or primary key constraints on table \"tags\""
+enum tags_constraint {
+    "unique or primary key constraint"
+    tabs_pkey
+}
+
+"select columns of table \"tags\""
+enum tags_select_column {
+    "column name"
+    name
+}
+
+"update columns of table \"tags\""
+enum tags_update_column {
+    "column name"
+    name
+}
+
+"expression to compare columns of type Boolean. All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"expression to compare columns of type Int. All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"expression to compare columns of type String. All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    _ilike: String
+    _in: [String!]
+    _is_null: Boolean
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    _nilike: String
+    _nin: [String!]
+    _nlike: String
+    _nsimilar: String
+    _similar: String
+}
+
+"order by aggregate values of table \"fragments\""
+input fragments_aggregate_order_by {
+    count: order_by
+    max: fragments_max_order_by
+    min: fragments_min_order_by
+}
+
+"input type for inserting array relation for remote table \"fragments\""
+input fragments_arr_rel_insert_input {
+    data: [fragments_insert_input!]!
+    on_conflict: fragments_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"fragments\". All fields are combined with a logical 'AND'."
+input fragments_bool_exp {
+    _and: [fragments_bool_exp]
+    _not: fragments_bool_exp
+    _or: [fragments_bool_exp]
+    branched: Boolean_comparison_exp
+    content: String_comparison_exp
+    created_on: timestamptz_comparison_exp
+    id: String_comparison_exp
+    stories: stories_fragments_bool_exp
+}
+
+"input type for inserting data into table \"fragments\""
+input fragments_insert_input {
+    branched: Boolean
+    content: String
+    created_on: timestamptz
+    id: String
+    stories: stories_fragments_arr_rel_insert_input
+}
+
+"order by max() on columns of table \"fragments\""
+input fragments_max_order_by {
+    content: order_by
+    created_on: order_by
+    id: order_by
+}
+
+"order by min() on columns of table \"fragments\""
+input fragments_min_order_by {
+    content: order_by
+    created_on: order_by
+    id: order_by
+}
+
+"input type for inserting object relation for remote table \"fragments\""
+input fragments_obj_rel_insert_input {
+    data: fragments_insert_input!
+    on_conflict: fragments_on_conflict
+}
+
+"on conflict condition type for table \"fragments\""
+input fragments_on_conflict {
+    constraint: fragments_constraint!
+    update_columns: [fragments_update_column!]!
+    where: fragments_bool_exp
+}
+
+"ordering options when selecting data from \"fragments\""
+input fragments_order_by {
+    branched: order_by
+    content: order_by
+    created_on: order_by
+    id: order_by
+    stories_aggregate: stories_fragments_aggregate_order_by
+}
+
+"primary key columns input for table: \"fragments\""
+input fragments_pk_columns_input {
+    id: String!
+}
+
+"input type for updating data in table \"fragments\""
+input fragments_set_input {
+    branched: Boolean
+    content: String
+    created_on: timestamptz
+    id: String
+}
+
+"order by aggregate values of table \"private_fragments\""
+input private_fragments_aggregate_order_by {
+    count: order_by
+    max: private_fragments_max_order_by
+    min: private_fragments_min_order_by
+}
+
+"input type for inserting array relation for remote table \"private_fragments\""
+input private_fragments_arr_rel_insert_input {
+    data: [private_fragments_insert_input!]!
+    on_conflict: private_fragments_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"private_fragments\". All fields are combined with a logical 'AND'."
+input private_fragments_bool_exp {
+    _and: [private_fragments_bool_exp]
+    _not: private_fragments_bool_exp
+    _or: [private_fragments_bool_exp]
+    content: String_comparison_exp
+    created_on: timestamptz_comparison_exp
+    id: String_comparison_exp
+    story: private_stories_bool_exp
+    story_id: String_comparison_exp
+}
+
+"input type for inserting data into table \"private_fragments\""
+input private_fragments_insert_input {
+    content: String
+    created_on: timestamptz
+    id: String
+    story: private_stories_obj_rel_insert_input
+    story_id: String
+}
+
+"order by max() on columns of table \"private_fragments\""
+input private_fragments_max_order_by {
+    content: order_by
+    created_on: order_by
+    id: order_by
+    story_id: order_by
+}
+
+"order by min() on columns of table \"private_fragments\""
+input private_fragments_min_order_by {
+    content: order_by
+    created_on: order_by
+    id: order_by
+    story_id: order_by
+}
+
+"input type for inserting object relation for remote table \"private_fragments\""
+input private_fragments_obj_rel_insert_input {
+    data: private_fragments_insert_input!
+    on_conflict: private_fragments_on_conflict
+}
+
+"on conflict condition type for table \"private_fragments\""
+input private_fragments_on_conflict {
+    constraint: private_fragments_constraint!
+    update_columns: [private_fragments_update_column!]!
+    where: private_fragments_bool_exp
+}
+
+"ordering options when selecting data from \"private_fragments\""
+input private_fragments_order_by {
+    content: order_by
+    created_on: order_by
+    id: order_by
+    story: private_stories_order_by
+    story_id: order_by
+}
+
+"primary key columns input for table: \"private_fragments\""
+input private_fragments_pk_columns_input {
+    id: String!
+}
+
+"input type for updating data in table \"private_fragments\""
+input private_fragments_set_input {
+    content: String
+    created_on: timestamptz
+    id: String
+    story_id: String
+}
+
+"order by aggregate values of table \"private_stories\""
+input private_stories_aggregate_order_by {
+    avg: private_stories_avg_order_by
+    count: order_by
+    max: private_stories_max_order_by
+    min: private_stories_min_order_by
+    stddev: private_stories_stddev_order_by
+    stddev_pop: private_stories_stddev_pop_order_by
+    stddev_samp: private_stories_stddev_samp_order_by
+    sum: private_stories_sum_order_by
+    var_pop: private_stories_var_pop_order_by
+    var_samp: private_stories_var_samp_order_by
+    variance: private_stories_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"private_stories\""
+input private_stories_arr_rel_insert_input {
+    data: [private_stories_insert_input!]!
+    on_conflict: private_stories_on_conflict
+}
+
+"order by avg() on columns of table \"private_stories\""
+input private_stories_avg_order_by {
+    char_limit: order_by
+}
+
+"Boolean expression to filter rows from the table \"private_stories\". All fields are combined with a logical 'AND'."
+input private_stories_bool_exp {
+    _and: [private_stories_bool_exp]
+    _not: private_stories_bool_exp
+    _or: [private_stories_bool_exp]
+    char_limit: Int_comparison_exp
+    cookie: String_comparison_exp
+    created_on: timestamptz_comparison_exp
+    description: String_comparison_exp
+    fragments: private_fragments_bool_exp
+    hash: String_comparison_exp
+    id: String_comparison_exp
+    salt: String_comparison_exp
+    title: String_comparison_exp
+}
+
+"input type for incrementing integer column in table \"private_stories\""
+input private_stories_inc_input {
+    char_limit: Int
+}
+
+"input type for inserting data into table \"private_stories\""
+input private_stories_insert_input {
+    char_limit: Int
+    cookie: String
+    created_on: timestamptz
+    description: String
+    fragments: private_fragments_arr_rel_insert_input
+    hash: String
+    id: String
+    salt: String
+    title: String
+}
+
+"order by max() on columns of table \"private_stories\""
+input private_stories_max_order_by {
+    char_limit: order_by
+    cookie: order_by
+    created_on: order_by
+    description: order_by
+    hash: order_by
+    id: order_by
+    salt: order_by
+    title: order_by
+}
+
+"order by min() on columns of table \"private_stories\""
+input private_stories_min_order_by {
+    char_limit: order_by
+    cookie: order_by
+    created_on: order_by
+    description: order_by
+    hash: order_by
+    id: order_by
+    salt: order_by
+    title: order_by
+}
+
+"input type for inserting object relation for remote table \"private_stories\""
+input private_stories_obj_rel_insert_input {
+    data: private_stories_insert_input!
+    on_conflict: private_stories_on_conflict
+}
+
+"on conflict condition type for table \"private_stories\""
+input private_stories_on_conflict {
+    constraint: private_stories_constraint!
+    update_columns: [private_stories_update_column!]!
+    where: private_stories_bool_exp
+}
+
+"ordering options when selecting data from \"private_stories\""
+input private_stories_order_by {
+    char_limit: order_by
+    cookie: order_by
+    created_on: order_by
+    description: order_by
+    fragments_aggregate: private_fragments_aggregate_order_by
+    hash: order_by
+    id: order_by
+    salt: order_by
+    title: order_by
+}
+
+"primary key columns input for table: \"private_stories\""
+input private_stories_pk_columns_input {
+    id: String!
+}
+
+"input type for updating data in table \"private_stories\""
+input private_stories_set_input {
+    char_limit: Int
+    cookie: String
+    created_on: timestamptz
+    description: String
+    hash: String
+    id: String
+    salt: String
+    title: String
+}
+
+"order by stddev() on columns of table \"private_stories\""
+input private_stories_stddev_order_by {
+    char_limit: order_by
+}
+
+"order by stddev_pop() on columns of table \"private_stories\""
+input private_stories_stddev_pop_order_by {
+    char_limit: order_by
+}
+
+"order by stddev_samp() on columns of table \"private_stories\""
+input private_stories_stddev_samp_order_by {
+    char_limit: order_by
+}
+
+"order by sum() on columns of table \"private_stories\""
+input private_stories_sum_order_by {
+    char_limit: order_by
+}
+
+"order by var_pop() on columns of table \"private_stories\""
+input private_stories_var_pop_order_by {
+    char_limit: order_by
+}
+
+"order by var_samp() on columns of table \"private_stories\""
+input private_stories_var_samp_order_by {
+    char_limit: order_by
+}
+
+"order by variance() on columns of table \"private_stories\""
+input private_stories_variance_order_by {
+    char_limit: order_by
+}
+
+"order by aggregate values of table \"stories\""
+input stories_aggregate_order_by {
+    avg: stories_avg_order_by
+    count: order_by
+    max: stories_max_order_by
+    min: stories_min_order_by
+    stddev: stories_stddev_order_by
+    stddev_pop: stories_stddev_pop_order_by
+    stddev_samp: stories_stddev_samp_order_by
+    sum: stories_sum_order_by
+    var_pop: stories_var_pop_order_by
+    var_samp: stories_var_samp_order_by
+    variance: stories_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"stories\""
+input stories_arr_rel_insert_input {
+    data: [stories_insert_input!]!
+    on_conflict: stories_on_conflict
+}
+
+"order by avg() on columns of table \"stories\""
+input stories_avg_order_by {
+    char_limit: order_by
+}
+
+"Boolean expression to filter rows from the table \"stories\". All fields are combined with a logical 'AND'."
+input stories_bool_exp {
+    _and: [stories_bool_exp]
+    _not: stories_bool_exp
+    _or: [stories_bool_exp]
+    char_limit: Int_comparison_exp
+    created_on: timestamptz_comparison_exp
+    description: String_comparison_exp
+    fragments: stories_fragments_bool_exp
+    id: String_comparison_exp
+    tags: stories_tags_bool_exp
+    title: String_comparison_exp
+}
+
+"order by aggregate values of table \"stories_fragments\""
+input stories_fragments_aggregate_order_by {
+    count: order_by
+    max: stories_fragments_max_order_by
+    min: stories_fragments_min_order_by
+}
+
+"input type for inserting array relation for remote table \"stories_fragments\""
+input stories_fragments_arr_rel_insert_input {
+    data: [stories_fragments_insert_input!]!
+    on_conflict: stories_fragments_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"stories_fragments\". All fields are combined with a logical 'AND'."
+input stories_fragments_bool_exp {
+    _and: [stories_fragments_bool_exp]
+    _not: stories_fragments_bool_exp
+    _or: [stories_fragments_bool_exp]
+    fragment: fragments_bool_exp
+    fragment_id: String_comparison_exp
+    story: stories_bool_exp
+    story_id: String_comparison_exp
+}
+
+"input type for inserting data into table \"stories_fragments\""
+input stories_fragments_insert_input {
+    fragment: fragments_obj_rel_insert_input
+    fragment_id: String
+    story: stories_obj_rel_insert_input
+    story_id: String
+}
+
+"order by max() on columns of table \"stories_fragments\""
+input stories_fragments_max_order_by {
+    fragment_id: order_by
+    story_id: order_by
+}
+
+"order by min() on columns of table \"stories_fragments\""
+input stories_fragments_min_order_by {
+    fragment_id: order_by
+    story_id: order_by
+}
+
+"input type for inserting object relation for remote table \"stories_fragments\""
+input stories_fragments_obj_rel_insert_input {
+    data: stories_fragments_insert_input!
+    on_conflict: stories_fragments_on_conflict
+}
+
+"on conflict condition type for table \"stories_fragments\""
+input stories_fragments_on_conflict {
+    constraint: stories_fragments_constraint!
+    update_columns: [stories_fragments_update_column!]!
+    where: stories_fragments_bool_exp
+}
+
+"ordering options when selecting data from \"stories_fragments\""
+input stories_fragments_order_by {
+    fragment: fragments_order_by
+    fragment_id: order_by
+    story: stories_order_by
+    story_id: order_by
+}
+
+"primary key columns input for table: \"stories_fragments\""
+input stories_fragments_pk_columns_input {
+    fragment_id: String!
+    story_id: String!
+}
+
+"input type for updating data in table \"stories_fragments\""
+input stories_fragments_set_input {
+    fragment_id: String
+    story_id: String
+}
+
+"input type for incrementing integer column in table \"stories\""
+input stories_inc_input {
+    char_limit: Int
+}
+
+"input type for inserting data into table \"stories\""
+input stories_insert_input {
+    char_limit: Int
+    created_on: timestamptz
+    description: String
+    fragments: stories_fragments_arr_rel_insert_input
+    id: String
+    tags: stories_tags_arr_rel_insert_input
+    title: String
+}
+
+"order by max() on columns of table \"stories\""
+input stories_max_order_by {
+    char_limit: order_by
+    created_on: order_by
+    description: order_by
+    id: order_by
+    title: order_by
+}
+
+"order by min() on columns of table \"stories\""
+input stories_min_order_by {
+    char_limit: order_by
+    created_on: order_by
+    description: order_by
+    id: order_by
+    title: order_by
+}
+
+"input type for inserting object relation for remote table \"stories\""
+input stories_obj_rel_insert_input {
+    data: stories_insert_input!
+    on_conflict: stories_on_conflict
+}
+
+"on conflict condition type for table \"stories\""
+input stories_on_conflict {
+    constraint: stories_constraint!
+    update_columns: [stories_update_column!]!
+    where: stories_bool_exp
+}
+
+"ordering options when selecting data from \"stories\""
+input stories_order_by {
+    char_limit: order_by
+    created_on: order_by
+    description: order_by
+    fragments_aggregate: stories_fragments_aggregate_order_by
+    id: order_by
+    tags_aggregate: stories_tags_aggregate_order_by
+    title: order_by
+}
+
+"primary key columns input for table: \"stories\""
+input stories_pk_columns_input {
+    id: String!
+}
+
+"input type for updating data in table \"stories\""
+input stories_set_input {
+    char_limit: Int
+    created_on: timestamptz
+    description: String
+    id: String
+    title: String
+}
+
+"order by stddev() on columns of table \"stories\""
+input stories_stddev_order_by {
+    char_limit: order_by
+}
+
+"order by stddev_pop() on columns of table \"stories\""
+input stories_stddev_pop_order_by {
+    char_limit: order_by
+}
+
+"order by stddev_samp() on columns of table \"stories\""
+input stories_stddev_samp_order_by {
+    char_limit: order_by
+}
+
+"order by sum() on columns of table \"stories\""
+input stories_sum_order_by {
+    char_limit: order_by
+}
+
+"order by aggregate values of table \"stories_tags\""
+input stories_tags_aggregate_order_by {
+    count: order_by
+    max: stories_tags_max_order_by
+    min: stories_tags_min_order_by
+}
+
+"input type for inserting array relation for remote table \"stories_tags\""
+input stories_tags_arr_rel_insert_input {
+    data: [stories_tags_insert_input!]!
+    on_conflict: stories_tags_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"stories_tags\". All fields are combined with a logical 'AND'."
+input stories_tags_bool_exp {
+    _and: [stories_tags_bool_exp]
+    _not: stories_tags_bool_exp
+    _or: [stories_tags_bool_exp]
+    story: stories_bool_exp
+    story_id: String_comparison_exp
+    tag: String_comparison_exp
+    tagByTag: tags_bool_exp
+}
+
+"input type for inserting data into table \"stories_tags\""
+input stories_tags_insert_input {
+    story: stories_obj_rel_insert_input
+    story_id: String
+    tag: String
+    tagByTag: tags_obj_rel_insert_input
+}
+
+"order by max() on columns of table \"stories_tags\""
+input stories_tags_max_order_by {
+    story_id: order_by
+    tag: order_by
+}
+
+"order by min() on columns of table \"stories_tags\""
+input stories_tags_min_order_by {
+    story_id: order_by
+    tag: order_by
+}
+
+"input type for inserting object relation for remote table \"stories_tags\""
+input stories_tags_obj_rel_insert_input {
+    data: stories_tags_insert_input!
+    on_conflict: stories_tags_on_conflict
+}
+
+"on conflict condition type for table \"stories_tags\""
+input stories_tags_on_conflict {
+    constraint: stories_tags_constraint!
+    update_columns: [stories_tags_update_column!]!
+    where: stories_tags_bool_exp
+}
+
+"ordering options when selecting data from \"stories_tags\""
+input stories_tags_order_by {
+    story: stories_order_by
+    story_id: order_by
+    tag: order_by
+    tagByTag: tags_order_by
+}
+
+"primary key columns input for table: \"stories_tags\""
+input stories_tags_pk_columns_input {
+    story_id: String!
+    tag: String!
+}
+
+"input type for updating data in table \"stories_tags\""
+input stories_tags_set_input {
+    story_id: String
+    tag: String
+}
+
+"order by var_pop() on columns of table \"stories\""
+input stories_var_pop_order_by {
+    char_limit: order_by
+}
+
+"order by var_samp() on columns of table \"stories\""
+input stories_var_samp_order_by {
+    char_limit: order_by
+}
+
+"order by variance() on columns of table \"stories\""
+input stories_variance_order_by {
+    char_limit: order_by
+}
+
+"order by aggregate values of table \"tags\""
+input tags_aggregate_order_by {
+    count: order_by
+    max: tags_max_order_by
+    min: tags_min_order_by
+}
+
+"input type for inserting array relation for remote table \"tags\""
+input tags_arr_rel_insert_input {
+    data: [tags_insert_input!]!
+    on_conflict: tags_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"tags\". All fields are combined with a logical 'AND'."
+input tags_bool_exp {
+    _and: [tags_bool_exp]
+    _not: tags_bool_exp
+    _or: [tags_bool_exp]
+    name: String_comparison_exp
+    stories: stories_tags_bool_exp
+}
+
+"input type for inserting data into table \"tags\""
+input tags_insert_input {
+    name: String
+    stories: stories_tags_arr_rel_insert_input
+}
+
+"order by max() on columns of table \"tags\""
+input tags_max_order_by {
+    name: order_by
+}
+
+"order by min() on columns of table \"tags\""
+input tags_min_order_by {
+    name: order_by
+}
+
+"input type for inserting object relation for remote table \"tags\""
+input tags_obj_rel_insert_input {
+    data: tags_insert_input!
+    on_conflict: tags_on_conflict
+}
+
+"on conflict condition type for table \"tags\""
+input tags_on_conflict {
+    constraint: tags_constraint!
+    update_columns: [tags_update_column!]!
+    where: tags_bool_exp
+}
+
+"ordering options when selecting data from \"tags\""
+input tags_order_by {
+    name: order_by
+    stories_aggregate: stories_tags_aggregate_order_by
+}
+
+"primary key columns input for table: \"tags\""
+input tags_pk_columns_input {
+    name: String!
+}
+
+"input type for updating data in table \"tags\""
+input tags_set_input {
+    name: String
+}
+
+"expression to compare columns of type timestamptz. All fields are combined with logical 'AND'."
+input timestamptz_comparison_exp {
+    _eq: timestamptz
+    _gt: timestamptz
+    _gte: timestamptz
+    _in: [timestamptz!]
+    _is_null: Boolean
+    _lt: timestamptz
+    _lte: timestamptz
+    _neq: timestamptz
+    _nin: [timestamptz!]
+}
+
+
+scalar timestamptz

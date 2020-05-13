@@ -1,0 +1,62 @@
+@import "src/theme/button-style";
+
+.logo {
+  max-width: 55px;
+  margin-left: 12px;
+}
+
+.expanded-header {
+  z-index: 0;
+}
+
+ion-grid {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+
+  h2.section-title {
+    padding: 0 12px 8px 0;
+  }
+
+  ion-item.toggle-child {
+    margin-top: -10px;
+
+    label {
+      font-size: 11px;
+      font-style: italic;
+    }
+  }
+
+  ion-input.char-limit {
+    text-align: center;
+    max-width: 50px;
+    border: .5px #4f4f4f dashed;
+    margin: 0 12px;
+    padding: 0;
+
+    input.native-input {
+      padding: 3px;
+    }
+  }
+
+  ion-row.button-row {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+ion-textarea.title-input {
+  font-size: 14px;
+  font-variant: small-caps;
+  font-feature-settings: unset;
+  textarea::placeholder {
+    font-variant: normal;
+  }
+}
+
+ion-textarea.description-input {
+  font-size: 12px;
+  textarea::placeholder {
+    font-size: 14px;
+  }
+}

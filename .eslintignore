@@ -1,0 +1,5 @@
+src/**/*/*.test.*
+src/**/__generated__/*
+src/serviceWorker.ts
+*.js
+types

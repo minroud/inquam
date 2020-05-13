@@ -1,0 +1,6 @@
+mutation addFragment($object: fragments_insert_input!) {
+    insert_fragments_one(object: $object) {
+        id
+        content
+    }
+}

@@ -1,0 +1,15 @@
+ion-row.button-row {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+ .ref {
+   color: #EA8255
+ }
+
+ ion-grid.new-story {
+   ion-row:not(.button-row) {
+     margin-left: 16px;
+     margin-right: 16px;
+   }
+ }

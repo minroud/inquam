@@ -1,0 +1,7 @@
+mutation addStory($object: stories_insert_input!) {
+    insert_stories_one(object: $object) {
+        id
+        title
+        description
+    }
+}

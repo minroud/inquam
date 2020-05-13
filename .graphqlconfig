@@ -1,0 +1,12 @@
+{
+  "name": "Remote Schema",
+  "schemaPath": "remote-schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Hasura Endpoint": {
+        "url": "https://inquam-alpha.herokuapp.com/v1/graphql",
+        "introspect": true
+      }
+    }
+  }
+}

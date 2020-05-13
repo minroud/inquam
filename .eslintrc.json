@@ -1,0 +1,47 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "functional",
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:functional/recommended",
+    "plugin:react/recommended",
+    "prettier/react"],
+  "rules": {
+    "functional/no-mixed-type": ["off"],
+    "functional/no-conditional-statement": ["off"],
+    "functional/no-return-void": ["warn"],
+    "functional/no-expression-statement": ["warn", { "ignorePattern": ["React", "serviceWorker", "WithSideEffects", "cache", "console"] }],
+    "functional/prefer-readonly-type": ["error", { "ignorePattern": "mutable" }],
+    "functional/no-let": ["error", { "ignorePattern": "lazy" }],
+    "functional/functional-parameters": ["warn", {"enforceParameterCount": false}],
+    "@typescript-eslint/explicit-function-return-type": ["error",
+      {"allowExpressions": true}],
+    "no-undef": "off",
+    "no-var": "error",
+    "no-param-reassign": "error",
+    "prettier/prettier": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

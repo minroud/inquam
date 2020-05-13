@@ -1,0 +1,7 @@
+mutation addPrivateStory($object:private_stories_insert_input!) {
+    insert_private_stories_one(object: $object) {
+        id
+        description
+        title
+    }
+}
