@@ -36,7 +36,7 @@ export const SearchPage: React.FC = () => {
   }
 
   const filterStories = (query: string): readonly any[] => {
-    return refPattern.test(query) ? filterById(query) : filterByContent(query)
+    return refPattern.test(query) ? filterById(query) : filterByContent(query.toLowerCase())
   }
 
   return (
@@ -48,6 +48,7 @@ export const SearchPage: React.FC = () => {
             !!detail.value ? setFilteredStories(filterStories(detail.value)) : setFilteredStories(data.stories)
           }
           animated={true}
+          inputmode="text"
           placeholder="Puedes buscar por título, referencia o descripción"
         />
         {loading || error || !data || !filteredStories.length ? (
