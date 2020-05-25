@@ -1,5 +1,6 @@
 query getStory($story_id: String!) {
     stories_by_pk(id: $story_id) {
+        id
         title
         char_limit
         fragments {

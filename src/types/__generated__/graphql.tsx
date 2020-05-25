@@ -540,7 +540,7 @@ export type Private_Stories = {
   fragments_aggregate: Private_Fragments_Aggregate;
   hash: Scalars['String'];
   id: Scalars['String'];
-  salt?: Maybe<Scalars['String']>;
+  salt: Scalars['String'];
   title: Scalars['String'];
 };
 

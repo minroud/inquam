@@ -23,8 +23,9 @@ export const AccessPrivateStory: React.FC<PrivateStoryProps> = ({ onAccessGrante
   const [unexpectedError, setUnexpectedError] = useState(false)
   const [processingRequest, setProcessingRequest] = useState(false)
   const [hashedPass, setHashedPass] = useState('')
+
   // Se utilizará la sal, una suerte de llave pública, para generar el hash de la contraseña introducida y compararlo con el de la historia
-  const { data, error, loading } = useQuery(queryGetSalt, { variables: { id: id } })
+  const { data, error, loading } = useQuery(queryGetSalt, { variables: { id } })
   const [lazilyGetPrivateStory] = useLazyQuery(queryGetPrivateStory, {
     onCompleted: (data) => {
       // Si se encuentra coincidencia del par id/hash se concede acceso a la historia

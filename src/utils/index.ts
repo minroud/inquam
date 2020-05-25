@@ -1,6 +1,7 @@
 // Archivo de utilidades comunes empleadas en distintos puntos de la app
 
 import { pbkdf2Callback } from 'types/pbkdf2'
+import { emptyStory, Story } from "types/stories"
 
 const crypto = require('crypto')
 const pbkdf2 = require('pbkdf2')
@@ -12,6 +13,8 @@ export const scrollToBottom = (): void => {
 }
 
 export const isInt = (candidate: string): boolean => /^\d+$/.test(candidate)
+
+export const isEmptyStory = (candidate: Story): boolean => JSON.stringify(candidate) === JSON.stringify(emptyStory)
 
 export const getRandomIndex = (length: number): number => Math.round(Math.random() * length)
 

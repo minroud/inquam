@@ -40,20 +40,20 @@ client.writeData({ data: { currentStory: '' } })
 // Declaración de rutas de navegación y proveedores de datos de la app
 
 const App: React.FC = () => (
-  <ApolloProvider client={ client }>
+  <ApolloProvider client={client}>
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet id="main">
-          <Route exact path="/home" component={ HomePage }/>
-          <Route exact path="/menu" component={ MenuPage }/>
-          <Route exact path="/search" component={ SearchPage }/>
-          <Route exact path="/library" component={ LibraryPage }/>
-          <Route exact path="/help" component={ HelpPage }/>
-          <Route exact path="/new-story" component={ CreateStoryPage }/>
-          <Route exact path="/new-private-story" component={ CreatePrivateStoryPage }/>
-          <Route exact path="/new-private-story/:id" component={ NewPrivateStoryPage }/>
-          <Route exact path="/story/:id" component={ StoryRouter }/>
-          <Redirect exact from="/" to="/home"/>
+          <Route exact path="/home" component={HomePage} />
+          <Route exact path="/menu" component={MenuPage} />
+          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/library" component={LibraryPage} />
+          <Route exact path="/help" component={HelpPage} />
+          <Route exact path="/new-story" component={CreateStoryPage} />
+          <Route exact path="/new-private-story" component={CreatePrivateStoryPage} />
+          <Route exact path="/new-private-story/:id" component={NewPrivateStoryPage} />
+          <Route exact path="/story/:id" component={StoryRouter} />
+          <Redirect exact from="/" to="/home" />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

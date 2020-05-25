@@ -1,5 +1,6 @@
 query getPrivateStorySalt($id: String!) {
     private_stories_by_pk(id: $id) {
         salt
+        id
     }
 }

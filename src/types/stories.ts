@@ -4,3 +4,9 @@ export type Story = {
   description: string
   charLimit?: string
 }
+
+export const emptyStory = {
+  id: "",
+  title: "",
+  description: ""
+}

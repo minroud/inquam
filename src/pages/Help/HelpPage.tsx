@@ -69,7 +69,7 @@ export const HelpPage: React.FC = () => {
               <p>
                 En el buscador puedes ver todas las historias públicas pulsando buscar sin introducir ningún criterio de
                 filtrado. También puedes encontrar una historia concreta introduciendo su referencia (del tipo #a1b2c3
-                para historias públicas). Finalmente, puedes filtrar por título y descripción con solo escribir en el
+                para historias públicas o #!a1b2c3 para historias privadas). Finalmente, puedes filtrar por título y descripción con solo escribir en el
                 cuadro de búsqueda.
               </p>
             </IonCol>
