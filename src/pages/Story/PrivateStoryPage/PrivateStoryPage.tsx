@@ -82,60 +82,63 @@ export const PrivateStoryPage: React.FC = () => {
     lazilyGetPrivateStory({ variables: { id, hash } })
   }
 
-  return !hasAccess ? (
+  return (
     <IonPage>
       <HomeHeader />
-      <IonContent>
-        <IonGrid className="ion-no-padding">
-          <AccessPrivateStory id={id} onAccessGranted={(data) => showStoryWithSideEffects(data)} />
-        </IonGrid>
-      </IonContent>
-    </IonPage>
-  ) : (
-    <IonPage>
-      <HomeHeader />
-      <IonContent>
-        <IonGrid>
-          {loading || error || !data ? (
-            <StateContainer state={error ? State.ALERT : State.LOADING} />
-          ) : (
-            <Story title={data.private_stories[0].title} fragments={data.private_stories[0].fragments} />
-          )}
-        </IonGrid>
-      </IonContent>
-      <IonFooter className={loading || error || !data ? 'ion-hide' : ''}>
-        <IonGrid className="ion-padding">
-          <IonRow className="input-container">
-            <IonCol className="ion-no-padding" size="10">
-              <IonTextarea
-                value={text}
-                inputmode="text"
-                rows={1}
-                maxlength={data?.private_stories[0]?.char_limit > 0 ? data?.private_stories[0]?.char_limit : undefined}
-                autoGrow={true}
-                onIonInput={scrollToBottom}
-                className="lighter-placeholder"
-                onIonChange={({ detail }) => setText(!!detail.value ? detail.value : '')}
-                placeholder={data.private_stories[0].fragments.length > 0 ? 'Continuar...' : 'Comenzar...'}
-              />
-            </IonCol>
-            <IonCol className="ion-no-padding">
-              <IonButtons>
-                <IonButton
-                  className="round-button"
-                  onClick={() => sendFragmentWithSideEffects()}
-                  disabled={isButtonDisabled || !text}
-                  color="primary"
-                  fill="solid"
-                  expand="block"
-                  shape="round">
-                  <IonIcon icon={caretForwardSharp} />
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonFooter>
+      {!hasAccess ? (
+        <IonContent>
+          <IonGrid className="ion-no-padding">
+            <AccessPrivateStory id={id} onAccessGranted={(data) => showStoryWithSideEffects(data)} />
+          </IonGrid>
+        </IonContent>
+      ) : loading || error || !data ? (
+        <IonContent>
+          <StateContainer state={error ? State.ALERT : State.LOADING} />
+        </IonContent>
+      ) : (
+        <>
+          <IonContent>
+            <IonGrid>
+              <Story title={data.private_stories[0].title} fragments={data.private_stories[0].fragments} />
+            </IonGrid>
+          </IonContent>
+          <IonFooter>
+            <IonGrid className="ion-padding">
+              <IonRow className="input-container">
+                <IonCol className="ion-no-padding" size="10">
+                  <IonTextarea
+                    value={text}
+                    inputmode="text"
+                    rows={1}
+                    maxlength={
+                      data?.private_stories[0]?.char_limit > 0 ? data?.private_stories[0]?.char_limit : undefined
+                    }
+                    autoGrow={true}
+                    onIonInput={scrollToBottom}
+                    className="lighter-placeholder"
+                    onIonChange={({ detail }) => setText(!!detail.value ? detail.value : '')}
+                    placeholder={data.private_stories[0].fragments.length > 0 ? 'Continuar...' : 'Comenzar...'}
+                  />
+                </IonCol>
+                <IonCol className="ion-no-padding">
+                  <IonButtons>
+                    <IonButton
+                      className="round-button"
+                      onClick={() => sendFragmentWithSideEffects()}
+                      disabled={isButtonDisabled || !text}
+                      color="primary"
+                      fill="solid"
+                      expand="block"
+                      shape="round">
+                      <IonIcon icon={caretForwardSharp} />
+                    </IonButton>
+                  </IonButtons>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonFooter>
+        </>
+      )}
     </IonPage>
   )
 }

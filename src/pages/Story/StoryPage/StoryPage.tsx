@@ -81,51 +81,55 @@ export const StoryPage: React.FC = () => {
   return (
     <IonPage>
       <HomeHeader />
-      <IonContent>
-        <IonGrid>
-          {loading || error || !data ? (
-            <StateContainer state={error ? State.ALERT : State.LOADING} />
-          ) : (
-            <Story
-              title={data.stories_by_pk.title}
-              fragments={data.stories_by_pk.fragments.map((fragment: any) => fragment.fragment)}
-            />
-          )}
-        </IonGrid>
-      </IonContent>
-      <IonFooter className={loading || error || !data ? 'ion-hide' : ''}>
-        <IonGrid className="ion-padding">
-          <IonRow className="input-container">
-            <IonCol className="ion-no-padding" size="10">
-              <IonTextarea
-                value={text}
-                inputmode="text"
-                rows={1}
-                maxlength={data?.stories_by_pk?.char_limit > 0 ? data?.stories_by_pk?.char_limit : undefined}
-                autoGrow={true}
-                onIonInput={scrollToBottom}
-                className="lighter-placeholder"
-                onIonChange={({ detail }) => setText(!!detail.value ? detail.value : '')}
-                placeholder={data?.stories_by_pk?.fragments > 0 ? 'Continuar...' : 'Comenzar...'}
+      { loading || error || !data ? (
+        <IonContent>
+          <StateContainer state={error ? State.ALERT : State.LOADING} />
+        </IonContent>
+      ) : (
+        <>
+          <IonContent>
+            <IonGrid>
+              <Story
+                title={data.stories_by_pk.title}
+                fragments={data.stories_by_pk.fragments.map((fragment: any) => fragment.fragment)}
               />
-            </IonCol>
-            <IonCol className="ion-no-padding">
-              <IonButtons>
-                <IonButton
-                  className="round-button"
-                  onClick={() => sendFragmentWithSideEffects()}
-                  disabled={isButtonDisabled || !text}
-                  color="primary"
-                  fill="solid"
-                  expand="block"
-                  shape="round">
-                  <IonIcon icon={caretForwardSharp} />
-                </IonButton>
-              </IonButtons>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonFooter>
+            </IonGrid>
+          </IonContent>
+          <IonFooter>
+            <IonGrid className="ion-padding">
+              <IonRow className="input-container">
+                <IonCol className="ion-no-padding" size="10">
+                  <IonTextarea
+                    value={text}
+                    inputmode="text"
+                    rows={1}
+                    maxlength={data?.stories_by_pk?.char_limit > 0 ? data?.stories_by_pk?.char_limit : undefined}
+                    autoGrow={true}
+                    onIonInput={scrollToBottom}
+                    className="lighter-placeholder"
+                    onIonChange={({ detail }) => setText(!!detail.value ? detail.value : '')}
+                    placeholder={data?.stories_by_pk?.fragments > 0 ? 'Continuar...' : 'Comenzar...'}
+                  />
+                </IonCol>
+                <IonCol className="ion-no-padding">
+                  <IonButtons>
+                    <IonButton
+                      className="round-button"
+                      onClick={() => sendFragmentWithSideEffects()}
+                      disabled={isButtonDisabled || !text}
+                      color="primary"
+                      fill="solid"
+                      expand="block"
+                      shape="round">
+                      <IonIcon icon={caretForwardSharp} />
+                    </IonButton>
+                  </IonButtons>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonFooter>
+        </>
+      )}
     </IonPage>
   )
 }
