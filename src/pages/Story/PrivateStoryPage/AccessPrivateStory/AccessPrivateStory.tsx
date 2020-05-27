@@ -37,7 +37,6 @@ export const AccessPrivateStory: React.FC<PrivateStoryProps> = ({ onAccessGrante
       setHashedPass('')
       setProcessingRequest(false)
       setUnexpectedError(true)
-      console.log('error ', error)
     },
   })
 

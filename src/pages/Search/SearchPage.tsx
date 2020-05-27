@@ -32,8 +32,7 @@ export const SearchPage: React.FC = () => {
       onCompleted: ({ private_stories_by_pk }) => {
         const story = !private_stories_by_pk ? emptyStory : private_stories_by_pk
         setPrivateStory(story as Story)
-      },
-      onError: (error) => console.log('este error ', error),
+      }
     }
   )
 
