@@ -31,3 +31,11 @@ export const unpackHashedPass = (hashedPass: string): readonly [ string, string 
   `${ hashedPass.slice(0, 40) }${ hashedPass.slice(128) }`,
   hashedPass.slice(40, 128),
 ]
+
+// strings
+
+export const normalizeString = (str: string): string =>
+  str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')

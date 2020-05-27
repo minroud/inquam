@@ -8,8 +8,8 @@ import { StoryCard } from 'components/StoryCard/StoryCard'
 import StateContainer from 'components/StateContainer/StateContainer'
 import { State } from 'assets/state'
 import { emptyStory, Story } from 'types/stories'
-import { isEmptyStory } from 'utils'
-import { GetPrivateStoryCardQuery, GetStoriesQuery, GetStoryQuery } from 'types/__generated__/graphql'
+import { isEmptyStory, normalizeString } from 'utils'
+import { GetPrivateStoryCardQuery, GetStoriesQuery } from 'types/__generated__/graphql'
 
 const queryGetStories = loader('src/graphql/get-stories.graphql')
 const queryGetPrivateStoryCard = loader('src/graphql/get-private-story-card.graphql')
@@ -45,7 +45,8 @@ export const SearchPage: React.FC = () => {
     return !!data?.stories
       ? data.stories.filter(
           ({ title, description }: Story) =>
-            title.toLowerCase().includes(query) || description.toLowerCase().includes(query)
+            normalizeString(title).includes(normalizeString(query)) ||
+            normalizeString(description).includes(normalizeString(query))
         )
       : []
   }
