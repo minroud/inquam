@@ -16,7 +16,7 @@ const getCurrentStory = loader('src/graphql/get-current-story.graphql')
 const HomePage: React.FC = () => {
   const history = useHistory()
   // La página inicial se encarga de recuperar la historia actual de la caché, o de generar un id random para cargar una nueva historia
-  const [ lazilyGetRefs, { error } ] = useLazyQuery<GetRefQuery>(getRefs, {
+  const [lazilyGetRefs, { error }] = useLazyQuery<GetRefQuery>(getRefs, {
     onCompleted: ({ stories }) => go2Story(stories[getRandomIndex(stories.length)].id),
   })
 

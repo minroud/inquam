@@ -24,6 +24,7 @@ import { HomeHeader } from 'components/HomeHeader/HomeHeader'
 import { AccessPrivateStory } from 'pages/Story/PrivateStoryPage/AccessPrivateStory/AccessPrivateStory'
 import { State } from 'assets/state'
 import { scrollToBottom } from 'utils'
+import { AddPrivateFragmentMutation, GetPrivateStoryQuery } from 'types/__generated__/graphql'
 
 //Queries
 const queryGetPrivateStory = loader('src/graphql/get-private-story.graphql')
@@ -37,9 +38,9 @@ export const PrivateStoryPage: React.FC = () => {
   const [isButtonDisabled, setButtonDisabled] = useState(false)
   const [hashedPass, setHashedPass] = useState('')
 
-  const [addPrivateFragment] = useMutation(mutationAddPrivateFragment)
+  const [addPrivateFragment] = useMutation<AddPrivateFragmentMutation>(mutationAddPrivateFragment)
   // La historia privada solo se obtiene una vez se ha concedido acceso al introducir una contraseña correcta
-  const [lazilyGetPrivateStory, { data, loading, error }] = useLazyQuery(queryGetPrivateStory, {
+  const [lazilyGetPrivateStory, { data, loading, error }] = useLazyQuery<GetPrivateStoryQuery>(queryGetPrivateStory, {
     pollInterval: 500,
     onCompleted: () => setAccess(true),
   })
@@ -48,7 +49,7 @@ export const PrivateStoryPage: React.FC = () => {
   const sendFragmentWithSideEffects = async (): Promise<void> => {
     setButtonDisabled(true)
 
-    const fragmentId = `${id}#${data.private_stories[0].fragments.length + 1}`
+    const fragmentId = `${id}#${data!.private_stories[0].fragments.length + 1}`
 
     // eslint-disable-next-line
     try {
@@ -60,7 +61,7 @@ export const PrivateStoryPage: React.FC = () => {
             private_stories: [
               {
                 ...story.private_stories[0],
-                fragments: [...story.private_stories[0].fragments, data.insert_private_fragments_one],
+                fragments: [...story.private_stories[0].fragments, data!.insert_private_fragments_one],
               },
             ],
           }

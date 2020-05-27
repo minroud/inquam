@@ -2468,6 +2468,102 @@ export type Timestamptz_Comparison_Exp = {
 };
 
 
+export type AddFragmentMutationVariables = {
+  object: Fragments_Insert_Input;
+};
+
+
+export type AddFragmentMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_fragments_one?: Maybe<(
+    { __typename?: 'fragments' }
+    & Pick<Fragments, 'id' | 'content'>
+  )> }
+);
+
+export type AddPrivateFragmentMutationVariables = {
+  object: Private_Fragments_Insert_Input;
+};
+
+
+export type AddPrivateFragmentMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_private_fragments_one?: Maybe<(
+    { __typename?: 'private_fragments' }
+    & Pick<Private_Fragments, 'id' | 'content'>
+  )> }
+);
+
+export type AddPrivateStoryMutationVariables = {
+  object: Private_Stories_Insert_Input;
+};
+
+
+export type AddPrivateStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_private_stories_one?: Maybe<(
+    { __typename?: 'private_stories' }
+    & Pick<Private_Stories, 'id' | 'description' | 'title'>
+  )> }
+);
+
+export type AddStoryMutationVariables = {
+  object: Stories_Insert_Input;
+};
+
+
+export type AddStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stories_one?: Maybe<(
+    { __typename?: 'stories' }
+    & Pick<Stories, 'id' | 'title' | 'description'>
+  )> }
+);
+
+export type GetPrivateStoryCardQueryVariables = {
+  id: Scalars['String'];
+};
+
+
+export type GetPrivateStoryCardQuery = (
+  { __typename?: 'query_root' }
+  & { private_stories_by_pk?: Maybe<(
+    { __typename?: 'private_stories' }
+    & Pick<Private_Stories, 'title' | 'description' | 'id'>
+  )> }
+);
+
+export type GetPrivateStorySaltQueryVariables = {
+  id: Scalars['String'];
+};
+
+
+export type GetPrivateStorySaltQuery = (
+  { __typename?: 'query_root' }
+  & { private_stories_by_pk?: Maybe<(
+    { __typename?: 'private_stories' }
+    & Pick<Private_Stories, 'salt' | 'id'>
+  )> }
+);
+
+export type GetPrivateStoryQueryVariables = {
+  id?: Maybe<Scalars['String']>;
+  hash?: Maybe<Scalars['String']>;
+};
+
+
+export type GetPrivateStoryQuery = (
+  { __typename?: 'query_root' }
+  & { private_stories: Array<(
+    { __typename?: 'private_stories' }
+    & Pick<Private_Stories, 'id' | 'title' | 'char_limit'>
+    & { fragments: Array<(
+      { __typename?: 'private_fragments' }
+      & Pick<Private_Fragments, 'content'>
+    )> }
+  )> }
+);
+
 export type GetRefQueryVariables = {};
 
 
@@ -2479,10 +2575,305 @@ export type GetRefQuery = (
   )> }
 );
 
+export type GetStoriesQueryVariables = {};
 
+
+export type GetStoriesQuery = (
+  { __typename?: 'query_root' }
+  & { stories: Array<(
+    { __typename?: 'stories' }
+    & Pick<Stories, 'title' | 'description' | 'id'>
+  )> }
+);
+
+export type GetStoryQueryVariables = {
+  story_id: Scalars['String'];
+};
+
+
+export type GetStoryQuery = (
+  { __typename?: 'query_root' }
+  & { stories_by_pk?: Maybe<(
+    { __typename?: 'stories' }
+    & Pick<Stories, 'id' | 'title' | 'char_limit'>
+    & { fragments: Array<(
+      { __typename?: 'stories_fragments' }
+      & { fragment: (
+        { __typename?: 'fragments' }
+        & Pick<Fragments, 'content'>
+      ) }
+    )> }
+  )> }
+);
+
+export type LinkFragmentToStoryMutationVariables = {
+  object: Stories_Fragments_Insert_Input;
+};
+
+
+export type LinkFragmentToStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stories_fragments_one?: Maybe<(
+    { __typename?: 'stories_fragments' }
+    & { story: (
+      { __typename?: 'stories' }
+      & { fragments: Array<(
+        { __typename?: 'stories_fragments' }
+        & { fragment: (
+          { __typename?: 'fragments' }
+          & Pick<Fragments, 'content'>
+        ) }
+      )> }
+    ) }
+  )> }
+);
+
+
+export const AddFragmentDocument = gql`
+    mutation addFragment($object: fragments_insert_input!) {
+  insert_fragments_one(object: $object) {
+    id
+    content
+  }
+}
+    `;
+export type AddFragmentMutationFn = ApolloReactCommon.MutationFunction<AddFragmentMutation, AddFragmentMutationVariables>;
+
+/**
+ * __useAddFragmentMutation__
+ *
+ * To run a mutation, you first call `useAddFragmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddFragmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addFragmentMutation, { data, loading, error }] = useAddFragmentMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *   },
+ * });
+ */
+export function useAddFragmentMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<AddFragmentMutation, AddFragmentMutationVariables>) {
+        return ApolloReactHooks.useMutation<AddFragmentMutation, AddFragmentMutationVariables>(AddFragmentDocument, baseOptions);
+      }
+export type AddFragmentMutationHookResult = ReturnType<typeof useAddFragmentMutation>;
+export type AddFragmentMutationResult = ApolloReactCommon.MutationResult<AddFragmentMutation>;
+export type AddFragmentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddFragmentMutation, AddFragmentMutationVariables>;
+export const AddPrivateFragmentDocument = gql`
+    mutation addPrivateFragment($object: private_fragments_insert_input!) {
+  insert_private_fragments_one(object: $object) {
+    id
+    content
+  }
+}
+    `;
+export type AddPrivateFragmentMutationFn = ApolloReactCommon.MutationFunction<AddPrivateFragmentMutation, AddPrivateFragmentMutationVariables>;
+
+/**
+ * __useAddPrivateFragmentMutation__
+ *
+ * To run a mutation, you first call `useAddPrivateFragmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddPrivateFragmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addPrivateFragmentMutation, { data, loading, error }] = useAddPrivateFragmentMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *   },
+ * });
+ */
+export function useAddPrivateFragmentMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<AddPrivateFragmentMutation, AddPrivateFragmentMutationVariables>) {
+        return ApolloReactHooks.useMutation<AddPrivateFragmentMutation, AddPrivateFragmentMutationVariables>(AddPrivateFragmentDocument, baseOptions);
+      }
+export type AddPrivateFragmentMutationHookResult = ReturnType<typeof useAddPrivateFragmentMutation>;
+export type AddPrivateFragmentMutationResult = ApolloReactCommon.MutationResult<AddPrivateFragmentMutation>;
+export type AddPrivateFragmentMutationOptions = ApolloReactCommon.BaseMutationOptions<AddPrivateFragmentMutation, AddPrivateFragmentMutationVariables>;
+export const AddPrivateStoryDocument = gql`
+    mutation addPrivateStory($object: private_stories_insert_input!) {
+  insert_private_stories_one(object: $object) {
+    id
+    description
+    title
+  }
+}
+    `;
+export type AddPrivateStoryMutationFn = ApolloReactCommon.MutationFunction<AddPrivateStoryMutation, AddPrivateStoryMutationVariables>;
+
+/**
+ * __useAddPrivateStoryMutation__
+ *
+ * To run a mutation, you first call `useAddPrivateStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddPrivateStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addPrivateStoryMutation, { data, loading, error }] = useAddPrivateStoryMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *   },
+ * });
+ */
+export function useAddPrivateStoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<AddPrivateStoryMutation, AddPrivateStoryMutationVariables>) {
+        return ApolloReactHooks.useMutation<AddPrivateStoryMutation, AddPrivateStoryMutationVariables>(AddPrivateStoryDocument, baseOptions);
+      }
+export type AddPrivateStoryMutationHookResult = ReturnType<typeof useAddPrivateStoryMutation>;
+export type AddPrivateStoryMutationResult = ApolloReactCommon.MutationResult<AddPrivateStoryMutation>;
+export type AddPrivateStoryMutationOptions = ApolloReactCommon.BaseMutationOptions<AddPrivateStoryMutation, AddPrivateStoryMutationVariables>;
+export const AddStoryDocument = gql`
+    mutation addStory($object: stories_insert_input!) {
+  insert_stories_one(object: $object) {
+    id
+    title
+    description
+  }
+}
+    `;
+export type AddStoryMutationFn = ApolloReactCommon.MutationFunction<AddStoryMutation, AddStoryMutationVariables>;
+
+/**
+ * __useAddStoryMutation__
+ *
+ * To run a mutation, you first call `useAddStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addStoryMutation, { data, loading, error }] = useAddStoryMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *   },
+ * });
+ */
+export function useAddStoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<AddStoryMutation, AddStoryMutationVariables>) {
+        return ApolloReactHooks.useMutation<AddStoryMutation, AddStoryMutationVariables>(AddStoryDocument, baseOptions);
+      }
+export type AddStoryMutationHookResult = ReturnType<typeof useAddStoryMutation>;
+export type AddStoryMutationResult = ApolloReactCommon.MutationResult<AddStoryMutation>;
+export type AddStoryMutationOptions = ApolloReactCommon.BaseMutationOptions<AddStoryMutation, AddStoryMutationVariables>;
+export const GetPrivateStoryCardDocument = gql`
+    query getPrivateStoryCard($id: String!) {
+  private_stories_by_pk(id: $id) {
+    title
+    description
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetPrivateStoryCardQuery__
+ *
+ * To run a query within a React component, call `useGetPrivateStoryCardQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPrivateStoryCardQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPrivateStoryCardQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetPrivateStoryCardQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetPrivateStoryCardQuery, GetPrivateStoryCardQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetPrivateStoryCardQuery, GetPrivateStoryCardQueryVariables>(GetPrivateStoryCardDocument, baseOptions);
+      }
+export function useGetPrivateStoryCardLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetPrivateStoryCardQuery, GetPrivateStoryCardQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetPrivateStoryCardQuery, GetPrivateStoryCardQueryVariables>(GetPrivateStoryCardDocument, baseOptions);
+        }
+export type GetPrivateStoryCardQueryHookResult = ReturnType<typeof useGetPrivateStoryCardQuery>;
+export type GetPrivateStoryCardLazyQueryHookResult = ReturnType<typeof useGetPrivateStoryCardLazyQuery>;
+export type GetPrivateStoryCardQueryResult = ApolloReactCommon.QueryResult<GetPrivateStoryCardQuery, GetPrivateStoryCardQueryVariables>;
+export const GetPrivateStorySaltDocument = gql`
+    query getPrivateStorySalt($id: String!) {
+  private_stories_by_pk(id: $id) {
+    salt
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetPrivateStorySaltQuery__
+ *
+ * To run a query within a React component, call `useGetPrivateStorySaltQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPrivateStorySaltQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPrivateStorySaltQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetPrivateStorySaltQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetPrivateStorySaltQuery, GetPrivateStorySaltQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetPrivateStorySaltQuery, GetPrivateStorySaltQueryVariables>(GetPrivateStorySaltDocument, baseOptions);
+      }
+export function useGetPrivateStorySaltLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetPrivateStorySaltQuery, GetPrivateStorySaltQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetPrivateStorySaltQuery, GetPrivateStorySaltQueryVariables>(GetPrivateStorySaltDocument, baseOptions);
+        }
+export type GetPrivateStorySaltQueryHookResult = ReturnType<typeof useGetPrivateStorySaltQuery>;
+export type GetPrivateStorySaltLazyQueryHookResult = ReturnType<typeof useGetPrivateStorySaltLazyQuery>;
+export type GetPrivateStorySaltQueryResult = ApolloReactCommon.QueryResult<GetPrivateStorySaltQuery, GetPrivateStorySaltQueryVariables>;
+export const GetPrivateStoryDocument = gql`
+    query getPrivateStory($id: String, $hash: String) {
+  private_stories(where: {id: {_eq: $id}, _and: {}, hash: {_eq: $hash}}) {
+    id
+    title
+    char_limit
+    fragments {
+      content
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPrivateStoryQuery__
+ *
+ * To run a query within a React component, call `useGetPrivateStoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPrivateStoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPrivateStoryQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *      hash: // value for 'hash'
+ *   },
+ * });
+ */
+export function useGetPrivateStoryQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetPrivateStoryQuery, GetPrivateStoryQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetPrivateStoryQuery, GetPrivateStoryQueryVariables>(GetPrivateStoryDocument, baseOptions);
+      }
+export function useGetPrivateStoryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetPrivateStoryQuery, GetPrivateStoryQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetPrivateStoryQuery, GetPrivateStoryQueryVariables>(GetPrivateStoryDocument, baseOptions);
+        }
+export type GetPrivateStoryQueryHookResult = ReturnType<typeof useGetPrivateStoryQuery>;
+export type GetPrivateStoryLazyQueryHookResult = ReturnType<typeof useGetPrivateStoryLazyQuery>;
+export type GetPrivateStoryQueryResult = ApolloReactCommon.QueryResult<GetPrivateStoryQuery, GetPrivateStoryQueryVariables>;
 export const GetRefDocument = gql`
     query getRef {
-  stories(limit: 1) {
+  stories {
     id
   }
 }
@@ -2512,3 +2903,115 @@ export function useGetRefLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookO
 export type GetRefQueryHookResult = ReturnType<typeof useGetRefQuery>;
 export type GetRefLazyQueryHookResult = ReturnType<typeof useGetRefLazyQuery>;
 export type GetRefQueryResult = ApolloReactCommon.QueryResult<GetRefQuery, GetRefQueryVariables>;
+export const GetStoriesDocument = gql`
+    query getStories {
+  stories {
+    title
+    description
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetStoriesQuery__
+ *
+ * To run a query within a React component, call `useGetStoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStoriesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetStoriesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetStoriesQuery, GetStoriesQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetStoriesQuery, GetStoriesQueryVariables>(GetStoriesDocument, baseOptions);
+      }
+export function useGetStoriesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetStoriesQuery, GetStoriesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetStoriesQuery, GetStoriesQueryVariables>(GetStoriesDocument, baseOptions);
+        }
+export type GetStoriesQueryHookResult = ReturnType<typeof useGetStoriesQuery>;
+export type GetStoriesLazyQueryHookResult = ReturnType<typeof useGetStoriesLazyQuery>;
+export type GetStoriesQueryResult = ApolloReactCommon.QueryResult<GetStoriesQuery, GetStoriesQueryVariables>;
+export const GetStoryDocument = gql`
+    query getStory($story_id: String!) {
+  stories_by_pk(id: $story_id) {
+    id
+    title
+    char_limit
+    fragments {
+      fragment {
+        content
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetStoryQuery__
+ *
+ * To run a query within a React component, call `useGetStoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStoryQuery({
+ *   variables: {
+ *      story_id: // value for 'story_id'
+ *   },
+ * });
+ */
+export function useGetStoryQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetStoryQuery, GetStoryQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetStoryQuery, GetStoryQueryVariables>(GetStoryDocument, baseOptions);
+      }
+export function useGetStoryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetStoryQuery, GetStoryQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetStoryQuery, GetStoryQueryVariables>(GetStoryDocument, baseOptions);
+        }
+export type GetStoryQueryHookResult = ReturnType<typeof useGetStoryQuery>;
+export type GetStoryLazyQueryHookResult = ReturnType<typeof useGetStoryLazyQuery>;
+export type GetStoryQueryResult = ApolloReactCommon.QueryResult<GetStoryQuery, GetStoryQueryVariables>;
+export const LinkFragmentToStoryDocument = gql`
+    mutation linkFragmentToStory($object: stories_fragments_insert_input!) {
+  insert_stories_fragments_one(object: $object) {
+    story {
+      fragments {
+        fragment {
+          content
+        }
+      }
+    }
+  }
+}
+    `;
+export type LinkFragmentToStoryMutationFn = ApolloReactCommon.MutationFunction<LinkFragmentToStoryMutation, LinkFragmentToStoryMutationVariables>;
+
+/**
+ * __useLinkFragmentToStoryMutation__
+ *
+ * To run a mutation, you first call `useLinkFragmentToStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLinkFragmentToStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [linkFragmentToStoryMutation, { data, loading, error }] = useLinkFragmentToStoryMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *   },
+ * });
+ */
+export function useLinkFragmentToStoryMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LinkFragmentToStoryMutation, LinkFragmentToStoryMutationVariables>) {
+        return ApolloReactHooks.useMutation<LinkFragmentToStoryMutation, LinkFragmentToStoryMutationVariables>(LinkFragmentToStoryDocument, baseOptions);
+      }
+export type LinkFragmentToStoryMutationHookResult = ReturnType<typeof useLinkFragmentToStoryMutation>;
+export type LinkFragmentToStoryMutationResult = ApolloReactCommon.MutationResult<LinkFragmentToStoryMutation>;
+export type LinkFragmentToStoryMutationOptions = ApolloReactCommon.BaseMutationOptions<LinkFragmentToStoryMutation, LinkFragmentToStoryMutationVariables>;

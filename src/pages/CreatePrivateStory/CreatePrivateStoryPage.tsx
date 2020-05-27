@@ -22,6 +22,7 @@ import { generateHash, generateSalt, isInt, packHashedPass } from 'utils'
 import { useHistory } from 'react-router'
 import { Story } from 'types/stories'
 import { Plugins } from '@capacitor/core'
+import { AddPrivateStoryMutation } from 'types/__generated__/graphql'
 
 const { Storage } = Plugins
 
@@ -40,7 +41,7 @@ export const CreatePrivateStoryPage: React.FC = () => {
   const [isValidPassword, setIsValidPassword] = useState(false)
   const [isProcessingRequest, setProcessingRequest] = useState(false)
 
-  const [addPrivateStory] = useMutation(mutationAddPrivateStory)
+  const [addPrivateStory] = useMutation<AddPrivateStoryMutation>(mutationAddPrivateStory)
 
   const isButtonDisabled = (): boolean =>
     isProcessingRequest ||

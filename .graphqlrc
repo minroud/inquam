@@ -2,7 +2,8 @@
   "schema": "remote-schema.graphql",
   "documents": [
     "./src/**/*.tsx",
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./src/**/*.graphql"
   ],
   "extensions": {
     "codegen": {

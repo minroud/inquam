@@ -7,6 +7,7 @@ import { loader } from 'graphql.macro'
 import { useLazyQuery, useQuery } from '@apollo/react-hooks'
 import StateContainer from 'components/StateContainer/StateContainer'
 import { State } from 'assets/state'
+import { GetPrivateStoryQuery, GetPrivateStorySaltQuery } from 'types/__generated__/graphql'
 
 //Queries
 const queryGetSalt = loader('src/graphql/get-private-story-salt.graphql')
@@ -25,34 +26,36 @@ export const AccessPrivateStory: React.FC<PrivateStoryProps> = ({ onAccessGrante
   const [hashedPass, setHashedPass] = useState('')
 
   // Se utilizará la sal, una suerte de llave pública, para generar el hash de la contraseña introducida y compararlo con el de la historia
-  const { data, error, loading } = useQuery(queryGetSalt, { variables: { id } })
-  const [lazilyGetPrivateStory] = useLazyQuery(queryGetPrivateStory, {
-    onCompleted: (data) => {
+  const { data, error, loading } = useQuery<GetPrivateStorySaltQuery>(queryGetSalt, { variables: { id } })
+  const [lazilyGetPrivateStory] = useLazyQuery<GetPrivateStoryQuery>(queryGetPrivateStory, {
+    onCompleted: ({ private_stories }) => {
       // Si se encuentra coincidencia del par id/hash se concede acceso a la historia
-      data?.private_stories?.length > 0 ? onAccessGranted(hashedPass) : setError(true)
-      setProcessingRequest(data?.private_stories?.length > 0)
+      private_stories?.length > 0 ? onAccessGranted(hashedPass) : setError(true)
+      setProcessingRequest(private_stories?.length > 0)
     },
     onError: (error) => {
       setHashedPass('')
       setProcessingRequest(false)
       setUnexpectedError(true)
       console.log('error ', error)
-    }
+    },
   })
 
   const attemptAccess = (): void => {
     setProcessingRequest(true)
+    const salt = !!data?.private_stories_by_pk?.salt ? data?.private_stories_by_pk?.salt : ''
     const callback = (err: Error | null, result: Buffer): any => {
-      const hash = packHashedPass(result, data.private_stories_by_pk.salt)
+      const hash = packHashedPass(result, salt)
       setHashedPass(hash)
       lazilyGetPrivateStory({ variables: { id, hash } })
     }
 
-    generateHash(password, data.private_stories_by_pk.salt, callback)
+    generateHash(password, salt, callback)
   }
 
   return !data || error || loading || unexpectedError ? (
-    <StateContainer state={error || unexpectedError ? State.ALERT : State.LOADING} />) : (
+    <StateContainer state={error || unexpectedError ? State.ALERT : State.LOADING} />
+  ) : (
     <>
       <StateContainer state={State.LOCKED} />
       <IonRow>

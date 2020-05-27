@@ -18,8 +18,9 @@ import { loader } from 'graphql.macro'
 import ShortUniqueId from 'short-unique-id'
 import { NavigationHeader } from 'components/NavigationHeader/NavigationHeader'
 import { useHistory } from 'react-router'
-import { Story } from "types/stories"
+import { Story } from 'types/stories'
 import { Plugins } from '@capacitor/core'
+import { AddStoryMutation } from 'types/__generated__/graphql'
 
 const { Storage } = Plugins
 
@@ -34,7 +35,7 @@ export const CreateStoryPage: React.FC = () => {
   const [isCharLimitEnabled, setCharLimitEnabled] = useState(false)
   const [isProcessingRequest, setProcessingRequest] = useState(false)
 
-  const [addStory] = useMutation(mutationAddStory)
+  const [addStory] = useMutation<AddStoryMutation>(mutationAddStory)
 
   const isInt = (candidate: string): boolean => {
     return /^\d+$/.test(candidate)
@@ -55,8 +56,12 @@ export const CreateStoryPage: React.FC = () => {
       .then(({ data }) => {
         //Tras crear la nueva historia, se resetea el estado, se guarda en la biblioteca y se navega a ella
         resetState()
-        storeInLibrary(data.insert_stories_one?.id, data.insert_stories_one?.title, data.insert_stories_one?.description)
-        history.push(`/story/${data.insert_stories_one.id}`)
+        storeInLibrary(
+          data!.insert_stories_one!.id,
+          data!.insert_stories_one!.title,
+          data!.insert_stories_one!.description
+        )
+        history.push(`/story/${data!.insert_stories_one!.id}`)
       })
       .catch((e) => console.error('error: ', e))
       .finally(() => setProcessingRequest(false))

@@ -23,6 +23,7 @@ import { loader } from 'graphql.macro'
 import { HomeHeader } from 'components/HomeHeader/HomeHeader'
 import { State } from 'assets/state'
 import { scrollToBottom } from 'utils'
+import { AddFragmentMutation, GetStoryQuery, LinkFragmentToStoryMutation } from 'types/__generated__/graphql'
 
 // Queries
 const queryGetStory = loader('src/graphql/get-story.graphql')
@@ -33,7 +34,7 @@ export const StoryPage: React.FC = () => {
   const client = useApolloClient()
   const { id } = useParams()
   // Query encargada de obtener la historia en base a su id
-  const { loading, error, data } = useQuery(queryGetStory, {
+  const { loading, error, data } = useQuery<GetStoryQuery>(queryGetStory, {
     variables: { story_id: id },
     // Una vez obtenida la historia, se almacena su id en la store local para tener una referncia a la historia actual
     onCompleted: () => client.writeData({ data: { currentStory: id } }),
@@ -41,8 +42,8 @@ export const StoryPage: React.FC = () => {
 
   const [text, setText] = useState('')
   const [isButtonDisabled, setButtonDisabled] = useState(false)
-  const [addFragment] = useMutation(mutationAddFragment)
-  const [linkFragment] = useMutation(mutationLinkFragment)
+  const [addFragment] = useMutation<AddFragmentMutation>(mutationAddFragment)
+  const [linkFragment] = useMutation<LinkFragmentToStoryMutation>(mutationLinkFragment)
 
   // Envía un nuevo fragmento usando mutaciones de GraphQl y actualiza el caché de Apollo con los cambios
   const sendFragmentWithSideEffects = async (): Promise<void> => {
@@ -63,7 +64,7 @@ export const StoryPage: React.FC = () => {
           const updatedStory = {
             stories_by_pk: {
               ...story.stories_by_pk,
-              fragments: data.insert_stories_fragments_one.story.fragments,
+              fragments: data!.insert_stories_fragments_one!.story.fragments,
             },
           }
           cache.writeQuery({ query: queryGetStory, variables: { story_id: id }, data: updatedStory })
@@ -81,7 +82,7 @@ export const StoryPage: React.FC = () => {
   return (
     <IonPage>
       <HomeHeader />
-      { loading || error || !data ? (
+      {loading || error || !data?.stories_by_pk ? (
         <IonContent>
           <StateContainer state={error ? State.ALERT : State.LOADING} />
         </IonContent>
@@ -108,7 +109,7 @@ export const StoryPage: React.FC = () => {
                     onIonInput={scrollToBottom}
                     className="lighter-placeholder"
                     onIonChange={({ detail }) => setText(!!detail.value ? detail.value : '')}
-                    placeholder={data?.stories_by_pk?.fragments > 0 ? 'Continuar...' : 'Comenzar...'}
+                    placeholder={data?.stories_by_pk?.fragments.length > 0 ? 'Continuar...' : 'Comenzar...'}
                   />
                 </IonCol>
                 <IonCol className="ion-no-padding">
