@@ -35,6 +35,7 @@ export const StoryPage: React.FC = () => {
   const { id } = useParams()
   // Query encargada de obtener la historia en base a su id
   const { loading, error, data } = useQuery<GetStoryQuery>(queryGetStory, {
+    pollInterval: 500,
     variables: { story_id: id },
     // Una vez obtenida la historia, se almacena su id en la store local para tener una referncia a la historia actual
     onCompleted: () => client.writeData({ data: { currentStory: id } }),

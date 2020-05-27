@@ -3,7 +3,7 @@ query getStory($story_id: String!) {
         id
         title
         char_limit
-        fragments {
+        fragments(order_by: {fragment: {id: asc}}) {
             fragment {
                 content
             }

@@ -3,7 +3,7 @@ query getPrivateStory($id: String, $hash: String) {
         id
         title
         char_limit
-        fragments {
+        fragments(order_by: {id: asc}) {
             content
         }
     }
