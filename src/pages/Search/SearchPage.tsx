@@ -21,6 +21,7 @@ export const SearchPage: React.FC = () => {
   // Se obtienen las historias, que son filtradas en tiempo real tras cada cambio en el cuadro de búsqueda
   // Este sistema dejará de ser sostenible conforme crezca la base de datos
   const { data, loading } = useQuery<GetStoriesQuery>(queryGetStories, {
+    pollInterval: 500,
     onCompleted: ({ stories }) => setFilteredStories(stories),
   })
 
