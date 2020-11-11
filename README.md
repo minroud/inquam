@@ -1,14 +1,12 @@
-# About Nix
-At the moment, Nix is but a draft.
-Once developed, it will simulate a simplified mobile phone OS as part of a escaperoom-like experience.
-Stay tuned for more!
+# About inQuam
+inQuam is a collaborative writing app were different users can join to create a story contributing with short fragments
 
 # Underlying Tech
-Nix is a hybrid mobile app written in Typescript using React and compiled with Capacitor.
+inQuam is a hybrid mobile app written in Typescript using React and compiled with Capacitor.
 It uses Ionic as a UI library.
 
 ## Why hybrid?
-It suits Nix's performance needs, speeds up development and allows us to support both Android and iOS
+It suits inQuam's performance needs, speeds up development and allows us to support both Android and iOS
 
 ## Why not use ReactNative?
 We perceive no need for native performance & Ionic/Capacitor offer a truly cross-platform solution
