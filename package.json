@@ -48,7 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.0.2",
+    "@capacitor/cli": "5.0.1",
     "@graphql-codegen/cli": "^1.13.5",
     "@graphql-codegen/introspection": "^1.13.5",
     "@graphql-codegen/typescript": "^1.13.5",
